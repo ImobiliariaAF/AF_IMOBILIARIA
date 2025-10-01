@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AF Imobiliária - Encontre Seu Imóvel Ideal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700;800;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1d1b1a;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Animações de Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .card-animation.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero */
+        .gradient-overlay {
+            background-image: linear-gradient(to top, rgba(29, 27, 26, 0.95) 10%, rgba(29, 27, 26, 0.5));
+        }
+
+        .hero-bg {
+            /* Imagem com maior contraste e apelo */
+            background-image: url('https://images.unsplash.com/photo-1518780749007-88942b083c26?q=80&w=2670&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-stone-900 text-gray-100">
+
+    <nav class="bg-gradient-to-br from-stone-950/95 to-stone-900/95 backdrop-blur-sm shadow-xl fixed w-full z-20 top-0 transition-colors duration-300" id="main-nav">
+        <div class="container mx-auto px-5 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black text-amber-500 tracking-wider transition-colors duration-300">
+                AF Imobiliária
+            </a>
+            <div class="hidden md:flex space-x-6" role="navigation" aria-label="Navegação Principal">
+                <a href="#inicio" class="text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Início</a>
+                <a href="#sobre" class="text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Sobre Nós</a>
+                <a href="#servicos" class="text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Serviços</a>
+                <a href="#imoveis" class="text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Imóveis</a>
+                <a href="#contato" class="text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Contato</a>
+            </div>
+            <button id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir Menu" class="md:hidden text-gray-300 hover:text-amber-500 focus:outline-none p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-950/90 px-5 pb-3 transition-all duration-300 ease-in-out" role="menu">
+            <a href="#inicio" role="menuitem" class="block py-2 text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold border-b border-stone-800">Início</a>
+            <a href="#sobre" role="menuitem" class="block py-2 text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold border-b border-stone-800">Sobre Nós</a>
+            <a href="#servicos" role="menuitem" class="block py-2 text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold border-b border-stone-800">Serviços</a>
+            <a href="#imoveis" role="menuitem" class="block py-2 text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold border-b border-stone-800">Imóveis</a>
+            <a href="#contato" role="menuitem" class="block py-2 text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Contato</a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative hero-bg h-[70vh] md:h-[80vh] flex items-center pt-20" role="banner">
+        <div class="absolute inset-0 gradient-overlay"></div>
+        <div class="container mx-auto px-5 text-center text-white z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-wide fade-in">
+                SEU LAR, NOSSO FOCO.
+            </h1>
+            <p class="mt-3 text-base md:text-xl font-light max-w-2xl mx-auto fade-in" style="transition-delay: 0.2s;">
+                Especialistas em conectar pessoas a imóveis incríveis. Seu novo capítulo começa aqui.
+            </p>
+
+            <div class="mt-8 w-full max-w-lg mx-auto fade-in" style="transition-delay: 0.4s;">
+                <div class="bg-stone-900 bg-opacity-80 backdrop-blur-sm p-4 rounded-xl shadow-2xl border border-amber-700/50">
+                    <h3 class="text-lg font-bold mb-3 text-amber-300">Busca Rápida por Código</h3>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                        <input type="number" id="busca-codigo" placeholder="Digite o código (ex: 1, 2, 3)" aria-label="Código do Imóvel" class="w-full p-3 rounded-lg text-gray-800 bg-stone-100 border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-400 font-semibold placeholder:font-light" required>
+                        <button id="btn-buscar-codigo" class="bg-amber-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-500 transition-colors duration-300 flex-shrink-0 text-sm transform hover:scale-[1.02]">
+                            BUSCAR
+                        </button>
+                    </div>
+                    <p id="feedback-busca" class="mt-3 text-sm text-red-400 font-medium hidden" role="alert">
+                        Código inválido. Por favor, tente novamente.
+                    </p>
+                </div>
+            </div>
+
+            <a href="imoveis.html" class="mt-8 inline-block bg-amber-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg shadow-amber-800/40
+                                         hover:bg-amber-500 transition-all duration-300 text-base transform hover:scale-105 fade-in" style="transition-delay: 0.6s;">
+                Ver Imóveis Disponíveis <span aria-hidden="true">&rarr;</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-16 md:py-24 bg-stone-900">
+        <div class="container mx-auto px-5 text-center fade-in">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-100 border-b-2 border-amber-500 inline-block pb-1">Quem Somos Nós</h2>
+            <p class="mt-6 text-gray-300 max-w-2xl mx-auto text-base leading-relaxed">
+                Acreditamos que um lar é muito mais do que um imóvel. É onde memórias são criadas e sonhos são realizados. 
+                Foi essa paixão por ajudar pessoas a encontrar seu espaço no mundo que nos trouxe ao mercado imobiliário em 2023. 
+                Hoje, nosso trabalho é unir nosso conhecimento e sua visão para que você encontre não apenas uma casa, mas o **lugar perfeito** para a sua vida, com **transparência** e **segurança**.
+            </p>
+        </div>
+    </section>
+
+    <section id="servicos" class="bg-gradient-to-br from-stone-950 to-stone-900 py-16 md:py-24">
+        <div class="container mx-auto px-5 text-center fade-in">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-100">Nossos Serviços</h2>
+            <p class="mt-3 text-gray-300 max-w-xl mx-auto text-base">
+                Oferecemos uma gama completa de soluções imobiliárias pensadas para o seu conforto.
+            </p>
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+                <div class="bg-stone-800 p-6 rounded-xl shadow-xl border border-stone-700/50 transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-900/40 card-animation">
+                    <div class="text-amber-500 mb-3 inline-block p-3 rounded-full bg-stone-900/50">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4"/><path d="M15 22v-4"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M10 16h.01"/><path d="M14 16h.01"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100 mt-2">Compra e Venda</h3>
+                    <p class="mt-2 text-gray-300 text-sm">Encontre o imóvel ideal ou venda sua propriedade pelo melhor preço e no menor tempo possível, com total segurança e suporte.</p>
+                </div>
+                <div class="bg-stone-800 p-6 rounded-xl shadow-xl border border-stone-700/50 transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-900/40 card-animation" style="transition-delay: 0.2s;">
+                    <div class="text-amber-500 mb-3 inline-block p-3 rounded-full bg-stone-900/50">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key-round"><path d="M2 18v3l1-1 1-1v-4"/><path d="M7 11l4-4a2 2 0 0 1 4 0l1.25 1.25a2 2 0 0 1 0 2.5L13.5 15.5"/><path d="m10 14-1.5 1.5a2 2 0 1 1-5-5L10 14Z"/><path d="m14 18-1.5-1.5a2 2 0 0 1 0-2.5l2.5-2.5a2 2 0 0 1 2.5 0L22 17l-5 5-2.5-2.5z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100 mt-2">Aluguel e Gestão</h3>
+                    <p class="mt-2 text-gray-300 text-sm">Gerenciamos seu imóvel para aluguel, cuidando da divulgação, contratos, vistorias e manutenção, garantindo sua tranquilidade.</p>
+                </div>
+                <div class="bg-stone-800 p-6 rounded-xl shadow-xl border border-stone-700/50 transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-900/40 card-animation" style="transition-delay: 0.4s;">
+                    <div class="text-amber-500 mb-3 inline-block p-3 rounded-full bg-stone-900/50">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gavel"><path d="m15 12-8.5 8.5c-.7.7-1.9.7-2.6 0c-.7-.7-.7-1.9 0-2.6L12.4 9.4"/><path d="m21.5 15.5-1.6 1.6"/><path d="m5 16.5 1.5 1.5"/><path d="M12.5 10.5 10 8l8.5-8.5c.7-.7 1.9-.7 2.6 0 .7.7.7 1.9 0 2.6L15 5.5"/><path d="m4.5 9.5-1.6 1.6"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100 mt-2">Consultoria Jurídica</h3>
+                    <p class="mt-2 text-gray-300 text-sm">Assessoramento completo em todas as etapas burocráticas, além de avaliações precisas de mercado para garantir o melhor negócio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="imoveis" class="py-16 md:py-24 bg-stone-900">
+        <div class="container mx-auto px-5 text-center fade-in">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-100">Imóveis em Destaque</h2>
+            <p class="mt-3 text-gray-300 max-w-xl mx-auto text-base">
+                Uma seleção de propriedades exclusivas disponíveis para você.
+            </p>
+            <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="featured-imoveis">
+                <div class="bg-stone-800 rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-700/50 card-animation">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b169?q=80&w=2574&auto=format&fit=crop" alt="Casa de Luxo" class="w-full h-48 object-cover object-center">
+                    <div class="p-5 text-left">
+                        <span class="inline-block bg-amber-600/20 text-amber-300 text-xs font-bold px-2 py-0.5 rounded-full mb-2">CASA</span>
+                        <h3 class="text-lg font-bold text-gray-100">Casa de Luxo com Piscina</h3>
+                        <p class="mt-1 text-gray-400 text-sm">4 quartos, 3 banheiros, 2 vagas. Excelente localização.</p>
+                        <p class="mt-3 text-amber-500 font-extrabold text-xl">R$ 1.500.000</p>
+                        <a href="detalhes.html?id=2" class="mt-4 block text-center bg-amber-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-amber-500 transition-colors duration-300 text-sm transform hover:scale-[1.01]" aria-label="Ver detalhes do imóvel código 2">
+                            Detalhes <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-stone-800 rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-700/50 card-animation" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1570129477492-45e003058866?q=80&w=2670&auto=format&fit=crop" alt="Apartamento Moderno" class="w-full h-48 object-cover object-center">
+                    <div class="p-5 text-left">
+                        <span class="inline-block bg-amber-600/20 text-amber-300 text-xs font-bold px-2 py-0.5 rounded-full mb-2">APARTAMENTO</span>
+                        <h3 class="text-lg font-bold text-gray-100">Apartamento Moderno no Centro</h3>
+                        <p class="mt-1 text-gray-400 text-sm">2 quartos, 1 suíte, varanda gourmet. Lazer completo.</p>
+                        <p class="mt-3 text-amber-500 font-extrabold text-xl">R$ 850.000</p>
+                        <a href="detalhes.html?id=1" class="mt-4 block text-center bg-amber-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-amber-500 transition-colors duration-300 text-sm transform hover:scale-[1.01]" aria-label="Ver detalhes do imóvel código 1">
+                            Detalhes <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-stone-800 rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-700/50 card-animation" style="transition-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2670&auto=format&fit=crop" alt="Terreno para Construção" class="w-full h-48 object-cover object-center">
+                    <div class="p-5 text-left">
+                        <span class="inline-block bg-amber-600/20 text-amber-300 text-xs font-bold px-2 py-0.5 rounded-full mb-2">TERRENO</span>
+                        <h3 class="text-lg font-bold text-gray-100">Terreno em Condomínio Fechado</h3>
+                        <p class="mt-1 text-gray-400 text-sm">800 m². Perfeito para construir a casa dos seus sonhos com segurança e lazer.</p>
+                        <p class="mt-3 text-amber-500 font-extrabold text-xl">R$ 350.000</p>
+                        <a href="detalhes.html?id=3" class="mt-4 block text-center bg-amber-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-amber-500 transition-colors duration-300 text-sm transform hover:scale-[1.01]" aria-label="Ver detalhes do imóvel código 3">
+                            Detalhes <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="imoveis.html" class="mt-12 inline-block bg-amber-600 text-white font-semibold py-3 px-10 rounded-full shadow-xl shadow-amber-800/40 hover:bg-amber-500 transition-all duration-300 text-base transform hover:scale-105 fade-in">
+                Ver todos os imóveis
+            </a>
+        </div>
+    </section>
+
+    <section id="contato" class="bg-amber-800 py-16 md:py-24">
+        <div class="container mx-auto px-5 text-center text-white fade-in">
+            <h2 class="text-3xl md:text-4xl font-extrabold">Fale Conosco 👋</h2>
+            <p class="mt-3 text-base max-w-lg mx-auto">
+                Preencha o formulário abaixo e entraremos em contato o mais breve possível via WhatsApp para discutir seu projeto.
+            </p>
+            <form id="formulario-contato" class="mt-8 max-w-lg mx-auto space-y-4 card-animation" style="transition-delay: 0.2s;">
+                <input type="text" placeholder="Seu Nome Completo" id="nome-completo" aria-label="Seu Nome Completo" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white" required>
+                <input type="email" placeholder="Seu E-mail" id="email" aria-label="Seu E-mail" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white" required>
+                <input type="tel" placeholder="Seu Telefone (ex: 11 98765-4321)" id="telefone" aria-label="Seu Telefone" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white">
+                <select id="interesse" aria-label="Motivo do Contato" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white" required>
+                    <option value="">Selecione o motivo do contato...</option>
+                    <option value="Comprar um imóvel">Comprar um imóvel</option>
+                    <option value="Alugar um imóvel">Alugar um imóvel</option>
+                    <option value="Vender um imóvel">Vender um imóvel</option>
+                    <option value="Dúvida ou Suporte">Dúvida ou Suporte</option>
+                    <option value="Outros">Outros</option>
+                </select>
+                <textarea placeholder="Sua Mensagem ou detalhes do imóvel desejado (opcional)" id="mensagem" aria-label="Sua Mensagem" rows="3" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white"></textarea>
+                <button type="submit" class="w-full bg-stone-900 text-white font-bold py-3 rounded-lg shadow-xl shadow-stone-950/50 hover:bg-stone-800 transition-colors duration-300 transform hover:scale-[1.01] flex items-center justify-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    <span>ENVIAR VIA WHATSAPP</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-gradient-to-br from-stone-950 to-stone-900 text-white py-8 fade-in" role="contentinfo">
+        <div class="container mx-auto px-5 text-center">
+            <p class="text-xs text-gray-400">&copy; 2025 AF Imobiliária. Todos os direitos reservados. CRECI/SP 12345-J.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-amber-500 transition-colors duration-300" aria-label="Facebook">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-amber-500 transition-colors duration-300" aria-label="Instagram">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.721.01 3.682.043 2.509.088 3.821.942 4.949 2.07.955.955 1.71 2.267 1.798 4.949.033.961.043 1.252.043 3.682s-.01 2.721-.043 3.682c-.088 2.509-.942 3.821-2.07 4.949-.955.955-2.267 1.71-4.949 1.798-.961.033-1.252.043-3.682.043s-2.721-.01-3.682-.043c-2.509-.088-3.821-.942-4.949-2.07-.955-.955-1.71-2.267-1.798-4.949-.033-.961-.043-1.252-.043-3.682s.01-2.721.043-3.682c.088-2.509.942-3.821 2.07-4.949.955-.955 2.267-1.71 4.949-1.798.961-.033 1.252-.043 3.682-.043zm0-2c-2.676 0-3.047.01-4.124.06-1.07.04-1.79.231-2.424.479-.64.24-1.229.58-1.785 1.135-.556.556-.895 1.145-1.135 1.786-.248.634-.439 1.354-.479 2.424-.05 1.076-.06 1.446-.06 4.123v.081c0 2.678.01 3.048.06 4.124.04 1.07.231 1.79.479 2.424.24 .64.58 1.229 1.135 1.785.556.556 1.145.895 1.786 1.135.634.248 1.354.439 2.424.479 1.076.05 1.446.06 4.123.06h.081c2.678 0 3.048-.01 4.124-.06 1.07-.04 1.79-.231 2.424-.479.24-.64.58-1.229 1.135-1.785.556-.556 1.145-.895 1.786-1.135.634-.248 1.354-.439-.479 2.424-1.076-.05-1.446-.06-4.123-.06zm0 1.62c2.146 0 2.427.008 3.29.046 2.052.083 2.872.934 3.323 1.385.45.45.922 1.27.996 3.323.038.863.046 1.144.046 3.29s-.008 2.427-.046 3.29c-.074 2.052-.925 2.872-1.385 3.323-.45.45-1.27.922-3.323.996-.863.038-1.144-.046-3.29.046s-2.427-.008-3.29-.046c-.074-2.052-.925-2.872-1.385-3.323-.45-.45-.922-1.27-.996-3.323-.038-.863-.046-1.144-.046-3.29s.008-2.427.046-3.29c.074-2.052.925-2.872 1.385-3.323.45-.45 1.27-.922 3.323-.996.863-.038 1.144-.046 3.29-.046zm0 1.837a4.03 4.03 0 1 0 0 8.06 4.03 4.03 0 0 0 0-8.06zm0 2.407a1.623 1.623 0 1 1 0 3.246 1.623 1.623 0 0 1 0-3.246zm5.344-5.344a1.264 1.264 0 1 0 0 2.529 1.264 1.264 0 0 0 0-2.529z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-amber-500 transition-colors duration-300" aria-label="LinkedIn">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3.832a.5.5 0 0 0-.474.324l-.988 2.766a.5.5 0 0 1-.474.324H10.158a.5.5 0 0 1-.474-.324l-.988-2.766A.5.5 0 0 0 8.291 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16Z"/><path d="M12 11a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // ============== Variáveis do DOM =================
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const faders = document.querySelectorAll('.fade-in, .card-animation');
+            const buscaCodigoInput = document.getElementById('busca-codigo');
+            const btnBuscarCodigo = document.getElementById('btn-buscar-codigo');
+            const feedbackBusca = document.getElementById('feedback-busca');
+            const form = document.getElementById('formulario-contato');
+            const mainNav = document.getElementById('main-nav');
+
+
+            // ============== 1. Funções de UI/UX =================
+
+            // Inicializa o Scroll Suave
+            const initSmoothScroll = () => {
+                navLinks.forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        // Fecha o menu mobile ao clicar em um link
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        }
+
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                });
+            };
+
+            // Toggle do Menu Mobile
+            const toggleMobileMenu = () => {
+                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            };
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+            // Animação de Scroll
+            const initScrollAnimation = () => {
+                const appearOptions = { threshold: 0.2 };
+                const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, appearOptions);
+
+                faders.forEach(fader => {
+                    appearOnScroll.observe(fader);
+                });
+            };
+
+            // ============== 2. Lógica de Busca por Código =================
+            
+            const handleSearchByCode = () => {
+                const codigo = buscaCodigoInput.value.trim();
+                
+                // Validação simples: se é um número positivo (IDs começam em 1)
+                if (codigo && !isNaN(parseInt(codigo)) && parseInt(codigo) > 0) {
+                    feedbackBusca.classList.add('hidden');
+                    // Simula uma pequena demora para dar tempo de ver a transição
+                    btnBuscarCodigo.innerHTML = 'Carregando...';
+                    setTimeout(() => {
+                        window.location.href = `detalhes.html?id=${codigo}`;
+                    }, 500); // Meio segundo de delay
+                } else {
+                    feedbackBusca.textContent = 'Por favor, digite um código de imóvel válido (número positivo).';
+                    feedbackBusca.classList.remove('hidden');
+                }
+            };
+            
+            btnBuscarCodigo.addEventListener('click', handleSearchByCode);
+
+            // Opcional: Busca ao pressionar Enter no campo
+            buscaCodigoInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleSearchByCode();
+                }
+            });
+
+            // ============== 3. Lógica do Formulário (WhatsApp) =================
+            
+            const handleFormSubmit = (e) => {
+                e.preventDefault();
+
+                const nome = document.getElementById('nome-completo').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const telefone = document.getElementById('telefone').value.trim();
+                const interesse = document.getElementById('interesse').value;
+                const mensagem = document.getElementById('mensagem').value.trim();
+
+                // Validação do interesse (campo obrigatório com a melhoria)
+                if (!interesse) {
+                    alert('Por favor, selecione o motivo do seu contato.');
+                    return;
+                }
+                
+                // Montagem da mensagem
+                let textoWhatsApp = `*SOLICITAÇÃO DE CONTATO - AF IMOBILIÁRIA*\n\n`;
+                textoWhatsApp += `👤 *Nome:* ${nome}\n`;
+                if (telefone) textoWhatsApp += `📞 *Telefone:* ${telefone}\n`;
+                textoWhatsApp += `📧 *E-mail:* ${email}\n`;
+                textoWhatsApp += `🎯 *Interesse:* ${interesse}\n`;
+                if (mensagem !== '') {
+                    textoWhatsApp += `💬 *Mensagem/Detalhes:*\n${mensagem}`;
+                } else {
+                    textoWhatsApp += `💬 *Mensagem/Detalhes:*\nSem detalhes adicionais.`;
+                }
+
+                const mensagemCodificada = encodeURIComponent(textoWhatsApp);
+                const numeroWhatsApp = '5531999990005'; // **MUDE PARA SEU NÚMERO DE TELEFONE AQUI**
+                const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+                
+                window.open(urlWhatsApp, '_blank');
+                
+                // Limpa o formulário após o envio
+                form.reset();
+            };
+
+            form.addEventListener('submit', handleFormSubmit);
+
+            // ============== 4. Inicialização =================
+            initSmoothScroll();
+            initScrollAnimation();
+        });
+    </script>
+</body>
+</html>
+

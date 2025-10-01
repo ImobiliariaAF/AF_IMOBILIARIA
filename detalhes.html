@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="imovel-titulo-pagina">Detalhes do Imóvel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1d1b1a;
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* Estilo para a transição de altura do formulário */
+        .collapse-content {
+            transition: max-height 0.5s ease-out;
+        }
+        /* Estilo para o modal (Lightbox) */
+        .modal {
+            background-color: rgba(0, 0, 0, 0.9);
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-stone-900 text-gray-100 bg-gradient-to-br from-stone-950 to-stone-900">
+
+    <nav class="bg-gradient-to-br from-stone-950 to-stone-900 shadow-lg fixed w-full z-20 top-0">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <a href="index.html" class="text-lg font-extrabold text-amber-500 tracking-wider">
+                AF Imobiliária
+            </a>
+            <div class="hidden md:flex space-x-4">
+                <a href="index.html" class="text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Voltar para Imóveis</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-amber-500 focus:outline-none" aria-label="Abrir menu mobile">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-950 px-4 pb-2">
+            <a href="imoveis.html" class="block py-1 text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Voltar para Imóveis</a>
+        </div>
+    </nav>
+    
+    <main class="container mx-auto mt-20 px-4 py-4">
+        <div class="imovel-detalhes">
+            <div id="imovel-imagem-principal" class="h-80 bg-gray-300 rounded-lg overflow-hidden mb-5 shadow-xl">
+                </div>
+
+            <section class="bg-stone-900 p-5 rounded-lg shadow-lg border border-stone-800">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                    <div class="mb-3 md:mb-0">
+                        <h1 id="imovel-titulo" class="text-3xl font-bold text-amber-500"></h1>
+                        <p id="imovel-subtitulo" class="text-base text-gray-300 mt-1"></p>
+                    </div>
+                    
+                    <div class="flex items-center bg-stone-800 rounded-full p-2 self-start md:self-auto">
+                        <span class="text-xs font-semibold text-gray-400 mr-2">Cod:</span>
+                        <span id="imovel-id" class="text-xs font-bold text-gray-100 mr-2"></span>
+                        <button onclick="copiarCodigo()" class="bg-amber-600 text-white text-[0.6rem] px-2 py-0.5 rounded-full hover:bg-amber-500 transition-colors duration-300" aria-label="Copiar código do imóvel">
+                            Copiar
+                        </button>
+                    </div>
+                </div>
+                
+                <ul class="grid grid-cols-2 md:grid-cols-4 gap-4 text-gray-400 border-t border-b border-stone-800 py-4 mt-4">
+                    <li class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zM9.752 14.81l-1.396.698-1.579-1.92-2.128-.847c-.522-.208-.557-.743-.075-1.127l1.459-1.144-.067-.091a1 1 0 01.12-1.258l1.417-1.417a1 1 0 011.414 0l1.414 1.414a1 1 0 01.118 1.258l-.067.091 1.459 1.144c.482.384.447.919-.075 1.127l-2.128.847-1.58 1.92-1.396-.698a1 1 0 01-.194-1.724z"/>
+                        </svg>
+                        <div>
+                            <p class="font-semibold text-gray-200 text-sm">Quartos:</p>
+                            <p id="imovel-quartos" class="text-sm font-bold"></p>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.666 4.707a2 2 0 012.828 0l2.829 2.828a2 2 0 010 2.829L12 16.485V20h4v-3.5a1.5 1.5 0 00-1.5-1.5H9.5a1.5 1.5 0 00-1.5 1.5V20H4v-3.5a1.5 1.5 0 00-1.5-1.5H.5a.5.5 0 00-.5.5v3a.5.5 0 00.5.5h15a.5.5 0 00.5-.5V14a.5.5 0 00-.5-.5H8a1.5 1.5 0 01-1.5-1.5V4.707z" clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <p class="font-semibold text-gray-200 text-sm">Banheiros:</p>
+                            <p id="imovel-banheiros" class="text-sm font-bold"></p>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M18 13.5a1 1 0 001-1V5a1 1 0 00-1-1h-2a2 2 0 00-2-2h-4a2 2 0 00-2 2H2a1 1 0 00-1 1v7.5a1 1 0 001 1h2a1 1 0 011 1v2a1 1 0 01-1 1H2a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1v-1a1 1 0 00-1-1h-2a1 1 0 01-1-1v-2a1 1 0 011-1h2zM9 4h6v12H9z"/>
+                        </svg>
+                        <div>
+                            <p class="font-semibold text-gray-200 text-sm">Vagas:</p>
+                            <p id="imovel-vagas" class="text-sm font-bold"></p>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <p class="font-semibold text-gray-200 text-sm">Preço:</p>
+                            <p id="imovel-preco" class="text-2xl font-extrabold text-green-400"></p> 
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="mt-5">
+                    <h2 class="text-xl font-bold text-gray-100 mb-1">Descrição Completa</h2>
+                    <p id="imovel-descricao" class="text-gray-300 text-sm"></p>
+                </div>
+
+                <div class="mt-5">
+                    <h2 class="text-xl font-bold text-gray-100 mb-3">Galeria de Imagens</h2>
+                    <div id="imovel-galeria" class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+                        </div>
+                </div>
+
+                <div class="mt-8 bg-stone-800 p-3 rounded-lg shadow-lg">
+                    <div id="formulario-header" class="flex justify-between items-center cursor-pointer" aria-expanded="false" aria-controls="formulario-content">
+                        <h2 class="text-base font-bold text-gray-100">Interessado neste imóvel?</h2>
+                        <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 transition-transform duration-300 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div id="formulario-content" class="collapse-content max-h-0 overflow-hidden mt-3">
+                        <p class="text-sm text-gray-400 mb-4">Envie uma mensagem e entraremos em contato. O código do imóvel já será enviado para facilitar o atendimento.</p>
+                        <form id="formulario-contato" class="space-y-3">
+                            <input type="text" id="nome-completo" placeholder="Seu Nome Completo" class="w-full p-2.5 rounded-lg text-gray-100 bg-stone-900 border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-400" required>
+                            <input type="tel" id="telefone" placeholder="Seu Telefone (ex: (31) 99999-0000)" class="w-full p-2.5 rounded-lg text-gray-100 bg-stone-900 border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                            <textarea id="mensagem" rows="2" placeholder="Sua Mensagem (opcional)" class="w-full p-2.5 rounded-lg text-gray-100 bg-stone-900 border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea>
+                            <button type="submit" class="w-full bg-amber-600 text-white font-semibold py-2.5 rounded-lg shadow-lg hover:bg-amber-500 transition-colors duration-300 transform hover:scale-105">
+                                Entrar em Contato via WhatsApp
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </section>
+            
+        </div>
+    </main>
+
+    <div id="toast-notification" class="fixed bottom-4 right-4 bg-green-600 text-white py-2 px-4 rounded-lg shadow-xl opacity-0 transition-opacity duration-300 z-50 pointer-events-none" role="status" aria-live="polite">
+        Código copiado com sucesso!
+    </div>
+
+    <div id="image-modal" class="modal fixed inset-0 flex items-center justify-center z-50 opacity-0 pointer-events-none" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="relative max-w-5xl w-full mx-4">
+            <button id="close-modal-btn" class="absolute top-0 right-0 m-4 text-white hover:text-gray-300 transition-colors" aria-label="Fechar visualizador de imagem">
+                <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <img id="modal-image" src="" alt="Imagem em tela cheia" class="max-h-screen max-w-full block mx-auto object-contain p-8">
+        </div>
+    </div>
+
+    <footer class="bg-gradient-to-br from-stone-950 to-stone-900 text-white py-4 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-xs">&copy; 2025 AF Imobiliária. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="imoveis-data.js"></script>
+    
+    <script>
+        // --- FUNÇÕES DE UTILIDADE ---
+
+        /**
+         * Adiciona máscara de telefone no formato (XX) XXXXX-XXXX.
+         * @param {string} value O valor atual do campo
+         * @returns {string} O valor formatado
+         */
+        function applyPhoneMask(value) {
+            value = value.replace(/\D/g, ""); // Remove tudo que não for dígito
+            if (value.length > 0) {
+                value = "(" + value;
+            }
+            if (value.length > 3) {
+                value = value.substring(0, 3) + ") " + value.substring(3);
+            }
+            if (value.length > 10) {
+                value = value.substring(0, 10) + "-" + value.substring(10, 15);
+            }
+            return value;
+        }
+
+        /**
+         * Exibe um Toast de Notificação.
+         * @param {string} message A mensagem a ser exibida.
+         */
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            toast.textContent = message;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // --- LÓGICA PRINCIPAL ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const imovelId = urlParams.get('id');
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            if (imovelId) {
+                // Supondo que 'imoveis' é carregado do imoveis-data.js
+                const imovel = window.imoveis ? window.imoveis.find(i => i.id === parseInt(imovelId)) : null;
+
+                if (imovel) {
+                    // Carrega Dados do Imóvel
+                    document.getElementById('imovel-titulo-pagina').textContent = imovel.title;
+                    document.getElementById('imovel-titulo').textContent = imovel.title;
+                    document.getElementById('imovel-subtitulo').textContent = imovel.description;
+                    document.getElementById('imovel-id').textContent = imovel.id;
+                    document.getElementById('imovel-quartos').textContent = imovel.quartos;
+                    document.getElementById('imovel-banheiros').textContent = imovel.banheiros;
+                    document.getElementById('imovel-vagas').textContent = imovel.vagas;
+                    // Formato de preço melhorado
+                    document.getElementById('imovel-preco').textContent = `R$ ${imovel.price.toLocaleString('pt-BR')}`;
+                    document.getElementById('imovel-descricao').textContent = imovel.fullDescription;
+
+                    const imagemPrincipalContainer = document.getElementById('imovel-imagem-principal');
+                    imagemPrincipalContainer.innerHTML = `<img src="${imovel.image}" alt="${imovel.title}" class="w-full h-full object-cover rounded-lg cursor-pointer" onclick="openModal('${imovel.image}')">`;
+
+                    // Carrega Galeria e Adiciona Evento para o Lightbox
+                    const galeriaContainer = document.getElementById('imovel-galeria');
+                    galeriaContainer.innerHTML = '';
+                    imovel.galeria.forEach(imagemUrl => {
+                        const imgHtml = `<img src="${imagemUrl}" alt="Imagem do Imóvel" class="w-full h-24 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity" onclick="openModal('${imagemUrl}')">`;
+                        galeriaContainer.innerHTML += imgHtml;
+                    });
+
+                    // Aplica Máscara de Telefone (Melhoria 1.3)
+                    const telefoneInput = document.getElementById('telefone');
+                    telefoneInput.addEventListener('input', function (e) {
+                        e.target.value = applyPhoneMask(e.target.value);
+                    });
+
+                } else {
+                    // Trativa de erro/redirecionamento
+                    showToast('Imóvel não encontrado. Redirecionando...');
+                    setTimeout(() => {
+                        window.location.href = 'imoveis.html'; 
+                    }, 1500);
+                }
+            } else {
+                window.location.href = 'imoveis.html';
+            }
+        });
+
+        // Função para copiar o código do imóvel (Melhoria 1.2)
+        function copiarCodigo() {
+            const codigo = document.getElementById('imovel-id').textContent;
+            navigator.clipboard.writeText(codigo).then(() => {
+                showToast('Código do imóvel copiado!');
+            }).catch(err => {
+                console.error('Erro ao copiar o código:', err);
+            });
+        }
+
+        // --- LÓGICA DO LIGHTBOX (Melhoria 1.1) ---
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        function openModal(imageUrl) {
+            modalImage.src = imageUrl;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden'; // Evita scroll da página principal
+        }
+
+        function closeModal() {
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target.id === 'image-modal') {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('opacity-100')) {
+                closeModal();
+            }
+        });
+
+        // --- LÓGICA DO FORMULÁRIO RETRÁTIL ---
+        const formularioHeader = document.getElementById('formulario-header');
+        const formularioContent = document.getElementById('formulario-content');
+        const arrowIcon = document.getElementById('arrow-icon');
+        
+        formularioHeader.addEventListener('click', () => {
+            const isExpanded = formularioContent.style.maxHeight;
+
+            if (isExpanded) {
+                formularioContent.style.maxHeight = null;
+                arrowIcon.classList.remove('rotate-180');
+                formularioHeader.setAttribute('aria-expanded', 'false');
+            } else {
+                formularioContent.style.maxHeight = formularioContent.scrollHeight + "px";
+                arrowIcon.classList.add('rotate-180');
+                formularioHeader.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        const form = document.getElementById('formulario-contato');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome-completo').value;
+            const telefone = document.getElementById('telefone').value;
+            const mensagemAdicional = document.getElementById('mensagem').value;
+            const imovelId = document.getElementById('imovel-id').textContent;
+            const imovelTitulo = document.getElementById('imovel-titulo').textContent;
+            // O número de WhatsApp deve estar no formato internacional sem caracteres especiais (ex: 5531999990005)
+            const numeroWhatsApp = '5531999990005'; 
+
+            let textoWhatsApp = `Olá, meu nome é *${nome}*.`;
+            
+            if (telefone.trim() !== '') {
+                textoWhatsApp += ` Meu telefone é ${telefone}.`;
+            }
+
+            textoWhatsApp += ` Tenho interesse no imóvel de código *${imovelId} - ${imovelTitulo}*.`;
+            
+            if (mensagemAdicional.trim() !== '') {
+                textoWhatsApp += `\n\n${mensagemAdicional}`;
+            }
+
+            const mensagemCodificada = encodeURIComponent(textoWhatsApp);
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+            
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+</body>
+
+</html>
+
