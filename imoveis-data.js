@@ -19,11 +19,12 @@ const imoveis = [
         vagas: 0, 
         image: 'https://drive.google.com/uc?export=view&id=14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8',
         galeria: ['https://drive.google.com/uc?export=view&id=14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8']
-    },
+    }
 ];
 
 // Define a variável global que é usada pelo script em imoveis.html
 window.imoveis = imoveis;
+
 
 
 
