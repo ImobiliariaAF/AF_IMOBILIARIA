@@ -1,27 +1,21 @@
-// ====================================================================
-// === DADOS DE TESTE (Bloco temporário - Mantenha este bloco) ===
-// Ele garante que a página não quebre se o arquivo de dados externo falhar.
-// Se você tem um arquivo "imoveis-data.js", certifique-se que ele define
-// uma variável global 'imoveis' ou use o window.imoveis abaixo.
-// ====================================================================
+// imoveis-data.js
+
 const imoveis = [
     {
         id: 1, 
         codigoImovel: 'LOTE-1', 
         title: 'Lote - 360m²', 
-        type: 'Lote', 
+        type: 'Lote', // Mantenha o type 'Lote' para diferenciar
         description: '360m² para construir AGORA. Potencial máximo, investimento CERTO.',
         fullDescription: 'Oportunidade única: Lote de 360 m². Metragem padrão (12x30m), garantindo excelente aproveitamento do terreno para construção. Documentação regularizada e pronto para construir.',
         price: 470000,
         areaTotal: 360, 
-        image: 'https://via.placeholder.com/600x400?text=Lote+360m+Principal', 
+        image: 'https://drive.google.com/file/d/14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8/view?usp=sharing', 
         quartos: 0,
         banheiros: 0,
         vagas: 0,
         galeria: [
-            'https://via.placeholder.com/200x150?text=Lote+Vista+1',
-            'https://via.placeholder.com/200x150?text=Lote+Vista+2'
-        ]
+            'https://drive.google.com/file/d/14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8/view?usp=sharing']
     },
     {
         id: 2, 
@@ -42,34 +36,10 @@ const imoveis = [
             'https://via.placeholder.com/200x150?text=Suite'
         ]
     }
+    // Adicione mais imóveis aqui!
 ];
-// Esta linha torna a lista de imóveis acessível globalmente, fundamental para o find()
-window.imoveis = imoveis; 
-// ====================================================================
 
+// Torna a lista acessível ao main-detalhe.js
+window.imoveis = imoveis;
 
-// --- FUNÇÕES DE UTILIDADE ---
-
-function applyPhoneMask(value) {
-    value = value.replace(/\D/g, "");
-    if (value.length > 0) {
-        value = "(" + value;
-    }
-    if (value.length > 3) {
-        value = value.substring(0, 3) + ") " + value.substring(3);
-    }
-    if (value.length > 10) {
-        value = value.substring(0, 10) + "-" + value.substring(10, 15);
-    }
-    return value;
-}
-
-function showToast(message) {
-    const toast = document.getElementById('toast-notification');
-    toast.textContent = message;
-    toast.classList.remove('opacity-0', 'pointer-events-none');
-    toast.classList.add('opacity-100');
-
-    setTimeout(() => {
-        toast.classList.remove('opacity-100
 
