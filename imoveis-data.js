@@ -6,7 +6,7 @@
 const imoveis = [
     {
         id: 1, 
-        codigoImovel: '1', 
+        codigoImovel: 'LOTE-001', 
         title: 'Lote Exclusivo - 360m²', 
         type: 'terreno', 
         address: -,
@@ -24,6 +24,7 @@ const imoveis = [
 
 // Define a variável global que é usada pelo script em imoveis.html
 window.imoveis = imoveis;
+
 
 
 
