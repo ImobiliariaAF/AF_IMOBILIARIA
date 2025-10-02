@@ -6,7 +6,8 @@
     <title>Todos os Imóveis - AF Imobiliária</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;600;700;800;900&display=swap');
+        
         body {
             font-family: 'Inter', sans-serif;
             background-color: #1d1b1a;
@@ -30,63 +31,64 @@
         }
         /* Estilo para mostrar/esconder filtros avançados */
         .advanced-filters-content {
+            /* max-height: 0; REMOVIDO: Controlado apenas pelo JS */
             transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
             overflow: hidden;
+            opacity: 0; /* Inicia escondido */
         }
-        .advanced-filters-content:not(.is-open) {
-            max-height: 0;
-            opacity: 0;
+        .advanced-filters-content.is-open {
+            opacity: 1;
         }
     </style>
 </head>
 <body class="bg-stone-900 text-gray-100 bg-gradient-to-br from-stone-950 to-stone-900">
 
-    <nav class="bg-gradient-to-br from-stone-950 to-stone-900 shadow-lg w-full z-20 fixed top-0">
-        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
-            <a href="index.html" class="text-lg font-extrabold text-amber-500 tracking-wider">
+    <nav class="bg-gradient-to-br from-stone-950/90 to-stone-900/90 backdrop-blur-sm shadow-xl w-full z-20 fixed top-0" role="navigation" aria-label="Navegação Principal">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black text-amber-500 tracking-wider">
                 AF Imobiliária
             </a>
             <div class="hidden md:flex space-x-4">
                 <a href="index.html" class="text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Voltar para a Home</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-amber-500 focus:outline-none" aria-label="Abrir menu mobile">
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-amber-500 focus:outline-none p-1" aria-label="Abrir menu mobile" aria-expanded="false" aria-controls="mobile-menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-stone-950 px-4 pb-2">
-            <a href="index.html" class="block py-1 text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold">Voltar para a Home</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-950 px-4 pb-2" role="menu">
+            <a href="index.html" role="menuitem" class="block py-2 text-sm text-gray-300 hover:text-amber-500 transition-colors duration-300 font-semibold border-t border-stone-800">Voltar para a Home</a>
         </div>
     </nav>
     
-    <header class="pt-20 pb-8 text-center">
+    <header class="pt-24 pb-8 text-center" role="banner">
         <h1 class="text-3xl md:text-4xl font-extrabold text-gray-100">Todos os Imóveis</h1>
         <p class="mt-2 text-gray-300 max-w-lg mx-auto text-base">
-            Explore nossa seleção completa de casas, apartamentos e terrenos e use os filtros para encontrar o imóvel perfeito.
+            Explore nossa seleção completa de propriedades e use os filtros para encontrar o imóvel perfeito.
         </p>
     </header>
 
     <section id="filters" class="container mx-auto px-4 mb-8" aria-label="Filtros de Busca de Imóveis">
         <div class="bg-stone-900 p-4 rounded-xl shadow-xl border border-stone-800">
-            <h2 class="text-lg font-bold text-amber-500 mb-3">Busca Rápida</h2>
+            <h2 class="text-lg font-bold text-amber-500 mb-4">Filtros de Busca</h2>
             
             <form id="filter-form" class="grid grid-cols-1 md:grid-cols-5 gap-3">
                 <div class="md:col-span-2">
                     <label for="keyword" class="block text-sm font-medium text-gray-300 mb-1">Palavra-chave/Endereço</label>
-                    <input type="text" id="keyword" placeholder="Ex: Piscina, Centro..." class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
+                    <input type="text" id="keyword" placeholder="Ex: Piscina, Centro..." class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm" aria-label="Filtro por palavra-chave ou endereço">
                 </div>
                 <div>
                     <label for="code" class="block text-sm font-medium text-gray-300 mb-1">Código do Imóvel</label>
-                    <input type="text" id="code" placeholder="Ex: CASA-123" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
+                    <input type="text" id="code" placeholder="Ex: CASA-123" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm" aria-label="Filtro por código do imóvel">
                 </div>
                 <div>
                     <label for="type" class="block text-sm font-medium text-gray-300 mb-1">Tipo de Imóvel</label>
-                    <select id="type" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
+                    <select id="type" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm" aria-label="Selecione o tipo de imóvel">
                         <option value="all">Todos</option>
                         <option value="casa">Casa</option>
                         <option value="apartamento">Apartamento</option>
-                        <option value="terreno">Terreno</option>
+                        <option value="terreno">Terreno/Lote</option>
                     </select>
                 </div>
                 <div class="flex items-end">
@@ -95,7 +97,7 @@
                     </button>
                 </div>
 
-                <div class="md:col-span-5 pt-2 border-t border-stone-800 mt-3">
+                <div class="md:col-span-5 pt-3 border-t border-stone-800 mt-3">
                     <button type="button" id="toggle-advanced-filters" class="flex items-center text-sm font-semibold text-gray-300 hover:text-amber-500 transition-colors duration-300 focus:outline-none" aria-expanded="false" aria-controls="advanced-filters-content">
                         <span id="toggle-text">Mostrar Filtros Avançados</span>
                         <svg id="toggle-icon" class="w-4 h-4 ml-2 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -105,10 +107,10 @@
                 </div>
             </form>
             
-            <div id="advanced-filters-content" class="advanced-filters-content mt-4 grid grid-cols-1 md:grid-cols-5 gap-3">
+            <div id="advanced-filters-content" class="advanced-filters-content mt-4 grid grid-cols-1 md:grid-cols-5 gap-3" aria-hidden="true">
                 <div>
                     <label for="rooms" class="block text-sm font-medium text-gray-300 mb-1">Quartos (Mínimo)</label>
-                    <select id="rooms" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
+                    <select id="rooms" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm" aria-label="Mínimo de quartos">
                         <option value="0">Qualquer</option>
                         <option value="1">1+</option>
                         <option value="2">2+</option>
@@ -118,7 +120,7 @@
                 </div>
                 <div>
                     <label for="bathrooms" class="block text-sm font-medium text-gray-300 mb-1">Banheiros (Mínimo)</label>
-                    <select id="bathrooms" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
+                    <select id="bathrooms" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm" aria-label="Mínimo de banheiros">
                         <option value="0">Qualquer</option>
                         <option value="1">1+</option>
                         <option value="2">2+</option>
@@ -127,7 +129,7 @@
                 </div>
                 <div>
                     <label for="vagas" class="block text-sm font-medium text-gray-300 mb-1">Vagas (Mínimo)</label>
-                    <select id="vagas" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
+                    <select id="vagas" class="filter-input w-full p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm" aria-label="Mínimo de vagas de garagem">
                         <option value="0">Qualquer</option>
                         <option value="1">1+</option>
                         <option value="2">2+</option>
@@ -137,13 +139,13 @@
                 <div class="md:col-span-2">
                     <label for="min-price" class="block text-sm font-medium text-gray-300 mb-1">Preço Mín/Máx</label>
                     <div class="flex space-x-2">
-                        <input type="number" id="min-price" placeholder="R$ Mín" class="filter-input w-1/2 p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
-                        <input type="number" id="max-price" placeholder="R$ Máx" class="filter-input w-1/2 p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
+                        <input type="number" id="min-price" placeholder="R$ Mín" class="filter-input w-1/2 p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm" aria-label="Preço mínimo">
+                        <input type="number" id="max-price" placeholder="R$ Máx" class="filter-input w-1/2 p-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm" aria-label="Preço máximo">
                     </div>
                 </div>
 
-                <div class="md:col-span-5 flex justify-end gap-2 mt-4">
-                    <button type="button" id="reset-button" class="bg-gray-600 text-white font-semibold py-1.5 px-4 rounded-lg shadow-md hover:bg-gray-500 transition-colors duration-300 transform hover:scale-105 text-sm">
+                <div class="md:col-span-5 flex justify-end gap-2 pt-4 border-t border-stone-800">
+                    <button type="button" id="reset-button" class="bg-gray-600 text-white font-semibold py-1.5 px-4 rounded-lg shadow-md hover:bg-gray-500 transition-colors duration-300 transform hover:scale-105 text-sm" aria-label="Limpar todos os filtros">
                         Limpar Todos
                     </button>
                 </div>
@@ -152,15 +154,15 @@
     </section>
     
     <div class="container mx-auto px-4 mb-4">
-        <p id="results-count" class="text-sm text-gray-400 font-semibold">Carregando imóveis...</p>
+        <p id="results-count" class="text-sm text-gray-400 font-semibold" aria-live="polite">Carregando imóveis...</p>
     </div>
 
 
     <main class="container mx-auto px-4 py-6">
-        <div id="property-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div id="property-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" role="list">
         </div>
         
-        <div id="no-results" class="no-results text-center py-12 text-gray-400 text-lg font-semibold hidden">
+        <div id="no-results" class="no-results text-center py-12 text-gray-400 text-lg font-semibold hidden" role="alert">
             <svg class="w-12 h-12 mx-auto mb-3 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7H7m3 0a3 3 0 013 3v5a3 3 0 01-3 3h-3a3 3 0 01-3-3v-5a3 3 0 013-3h3z"></path>
             </svg>
@@ -168,9 +170,9 @@
         </div>
     </main>
 
-    <footer class="bg-gradient-to-br from-stone-950 to-stone-900 text-white py-4 mt-8">
+    <footer class="bg-gradient-to-br from-stone-950 to-stone-900 text-white py-4 mt-8" role="contentinfo">
         <div class="container mx-auto px-4 text-center">
-            <p class="text-xs">&copy; 2025 AF Imobiliária. Todos os direitos reservados.</p>
+            <p class="text-xs text-gray-400">&copy; 2025 AF Imobiliária. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -184,6 +186,7 @@
         const resultsCount = document.getElementById('results-count');
 
         // Inputs
+        const filterForm = document.getElementById('filter-form');
         const keywordInput = document.getElementById('keyword');
         const codeInput = document.getElementById('code'); 
         const typeSelect = document.getElementById('type');
@@ -222,17 +225,18 @@
 
                 filteredProperties.forEach((property, index) => {
                     
-                    // CORREÇÃO PARA LOTES/TERRENOS: Assume que 'terreno' ou 'lote' são terrenos
-                    const isTerreno = (String(property.type).toLowerCase() === 'terreno' || String(property.type).toLowerCase() === 'lote');
+                    // CORREÇÃO: Trata 'lote' como 'terreno'
+                    const propertyTypeLower = String(property.type || '').toLowerCase();
+                    const isTerreno = (propertyTypeLower === 'terreno' || propertyTypeLower === 'lote');
                     
                     let featuresHtml = '';
 
                     if (!isTerreno) {
-                        // Mostra características de Casas/Apartamentos
+                        // Ícone de Quarto Corrigido (Lucide Icon: Bed)
                         featuresHtml = `
                             <div class="flex justify-between text-gray-400 text-xs mt-3 border-t border-stone-700 pt-2">
                                 <div title="${property.quartos || 0} Quartos" class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19l7-7 7 7M5 5l7 7 7-7"></path></svg>
+                                    <svg class="w-4 h-4 mr-1 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 20h20M12 2a4 4 0 014 4v4H8V6a4 4 0 014-4zM2 14h20M2 10h20M7 14h10M7 10h10"></path></svg>
                                     ${property.quartos || 0} Qts
                                 </div>
                                 <div title="${property.banheiros || 0} Banheiros" class="flex items-center">
@@ -251,24 +255,26 @@
                             <div class="flex justify-center text-gray-400 text-xs mt-3 border-t border-stone-700 pt-2">
                                 <div title="${property.areaTotal || 0} m²" class="flex items-center font-bold text-gray-300">
                                     <svg class="w-4 h-4 mr-1 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h6M6 6h6"></path></svg>
-                                    Área: ${property.areaTotal || 'N/D'} m²
+                                    Área: ${property.areaTotal ? `${property.areaTotal} m²` : 'N/D'}
                                 </div>
                             </div>
                         `;
                     }
 
+                    const formattedPrice = `R$ ${Number(property.price).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+
                     const cardHtml = `
-                        <div class="bg-stone-800 rounded-xl shadow-lg overflow-hidden transform transition duration-500 hover:scale-[1.03] hover:shadow-2xl card-animation" style="transition-delay: ${index * 0.1}s;" role="listitem">
+                        <div class="bg-stone-800 rounded-xl shadow-lg overflow-hidden transform transition duration-500 hover:scale-[1.03] hover:shadow-2xl card-animation" style="transition-delay: ${index * 0.08}s;" role="listitem">
                             <img src="${property.image}" alt="${property.title}" class="w-full h-48 object-cover">
                             <div class="p-4">
-                                <span class="bg-amber-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full inline-block mb-2">Cód: ${property.id}</span>
+                                <span class="bg-amber-600/20 text-amber-300 text-xs font-semibold px-2 py-0.5 rounded-full inline-block mb-2">Cód: ${property.id}</span>
                                 <h3 class="text-lg font-bold text-gray-100">${property.title}</h3>
                                 <p class="mt-1 text-gray-300 text-sm truncate">${property.description}</p>
                                 
                                 ${featuresHtml}
 
-                                <p class="mt-3 text-green-400 font-extrabold text-xl">R$ ${Number(property.price).toLocaleString('pt-BR')}</p>
-                                <a href="detalhes.html?id=${property.id}" class="mt-3 block text-center bg-amber-600 text-white font-semibold py-2 px-3 rounded-lg hover:bg-amber-500 transition-colors duration-300 text-sm">
+                                <p class="mt-3 text-green-400 font-extrabold text-xl">${formattedPrice}</p>
+                                <a href="detalhes.html?id=${property.id}" class="mt-3 block text-center bg-amber-600 text-white font-semibold py-2 px-3 rounded-lg hover:bg-amber-500 transition-colors duration-300 text-sm" aria-label="Ver detalhes do imóvel código ${property.id}">
                                     Ver Detalhes
                                 </a>
                             </div>
@@ -280,7 +286,7 @@
                 // Lógica de Intersection Observer para a animação
                 const faders = document.querySelectorAll('.card-animation');
                 const appearOptions = { threshold: 0.2 };
-                const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                const appearOnScroll = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('is-visible');
@@ -301,12 +307,15 @@
                 return;
             }
             
-            const keyword = keywordInput.value.toLowerCase();
-            const code = codeInput.value.trim();
+            // Usamos .trim() para garantir que espaços em branco não causem problemas
+            const keyword = keywordInput.value.toLowerCase().trim();
+            const code = codeInput.value.toLowerCase().trim(); 
             const type = typeSelect.value;
-            const rooms = parseInt(roomsSelect.value);
-            const bathrooms = parseInt(bathroomsSelect.value);
-            const vagas = parseInt(vagasSelect.value);
+            const rooms = parseInt(roomsSelect.value) || 0;
+            const bathrooms = parseInt(bathroomsSelect.value) || 0;
+            const vagas = parseInt(vagasSelect.value) || 0;
+            
+            // Tratamento de Preço: Garante que os valores sejam 0 ou Infinity se vazios
             const minPrice = parseFloat(minPriceInput.value) || 0;
             const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
 
@@ -317,18 +326,19 @@
                     property.title,
                     property.description,
                     property.fullDescription,
-                    property.codigoImovel
+                    property.address
                 ].map(s => String(s || '').toLowerCase()).join(' ');
                 
                 const matchesKeyword = !keyword || propertyKeyword.includes(keyword);
 
-                // 2. FILTRO DE CÓDIGO (Busca parcial no código)
-                const codeToMatch = String(property.codigoImovel || property.id);
-                const matchesCode = !code || codeToMatch.toLowerCase().includes(code.toLowerCase());
+                // 2. FILTRO DE CÓDIGO (Busca parcial)
+                const codeToMatch = String(property.id || property.codigoImovel || '').toLowerCase();
+                const matchesCode = !code || codeToMatch.includes(code);
                 
-                // 3. FILTRO DE TIPO
+                // 3. FILTRO DE TIPO (Trata 'lote' como 'terreno')
                 const propertyType = String(property.type || '').toLowerCase();
-                const matchesType = type === 'all' || propertyType === type;
+                const normalizedType = (propertyType === 'lote') ? 'terreno' : propertyType;
+                const matchesType = type === 'all' || normalizedType === type;
                 
                 // 4. FILTROS NUMÉRICOS (Trata nulos como 0 para comparação)
                 const propertyRooms = property.quartos || 0;
@@ -349,43 +359,70 @@
 
         function resetFilters() {
             // Limpa todos os campos
-            keywordInput.value = '';
-            codeInput.value = '';
-            typeSelect.value = 'all';
-            roomsSelect.value = '0';
-            bathroomsSelect.value = '0';
-            vagasSelect.value = '0';
+            filterForm.reset();
+            
+            // Garante que min/max price sejam redefinidos corretamente
             minPriceInput.value = '';
             maxPriceInput.value = '';
             
+            // Reinicia a filtragem
             filterProperties();
+            
+            // Se os filtros avançados estiverem abertos, mantenha o estado (opcional)
+            // Ou feche-os para uma UX mais limpa:
+            if (advancedFiltersContent.classList.contains('is-open')) {
+                 toggleAdvancedFiltersContent();
+            }
+        }
+        
+        // Função para controle dos Filtros Avançados
+        function toggleAdvancedFiltersContent() {
+            const isExpanded = advancedFiltersContent.classList.toggle('is-open');
+            const scrollHeight = advancedFiltersContent.scrollHeight;
+
+            if (isExpanded) {
+                // Abre
+                advancedFiltersContent.style.maxHeight = scrollHeight + "px";
+                toggleIcon.classList.add('rotate-180');
+                toggleText.textContent = 'Esconder Filtros Avançados';
+                toggleAdvancedFiltersBtn.setAttribute('aria-expanded', 'true');
+                advancedFiltersContent.setAttribute('aria-hidden', 'false');
+            } else {
+                // Fecha
+                advancedFiltersContent.style.maxHeight = null; // Permite a transição de fechamento
+                toggleIcon.classList.remove('rotate-180');
+                toggleText.textContent = 'Mostrar Filtros Avançados';
+                toggleAdvancedFiltersBtn.setAttribute('aria-expanded', 'false');
+                advancedFiltersContent.setAttribute('aria-hidden', 'true');
+            }
         }
 
         // --- LÓGICA DE EVENTOS ---
 
         // Toggle de Filtros Avançados
-        toggleAdvancedFiltersBtn.addEventListener('click', () => {
-            const isExpanded = advancedFiltersContent.classList.toggle('is-open');
-            const scrollHeight = advancedFiltersContent.scrollHeight;
+        toggleAdvancedFiltersBtn.addEventListener('click', toggleAdvancedFiltersContent);
 
-            if (isExpanded) {
-                advancedFiltersContent.style.maxHeight = scrollHeight + "px";
-                toggleIcon.classList.add('rotate-180');
-                toggleText.textContent = 'Esconder Filtros Avançados';
-                toggleAdvancedFiltersBtn.setAttribute('aria-expanded', 'true');
+
+        // Eventos de Busca Automática ao Alterar o Filtro
+        const filterInputs = [keywordInput, codeInput, typeSelect, roomsSelect, bathroomsSelect, vagasSelect, minPriceInput, maxPriceInput];
+
+        filterInputs.forEach(input => {
+            if (input.type === 'text' || input.type === 'number') {
+                // 'input' para texto em tempo real, 'change' para garantir em todos os casos
+                input.addEventListener('input', filterProperties);
             } else {
-                advancedFiltersContent.style.maxHeight = null;
-                toggleIcon.classList.remove('rotate-180');
-                toggleText.textContent = 'Mostrar Filtros Avançados';
-                toggleAdvancedFiltersBtn.setAttribute('aria-expanded', 'false');
+                // 'change' para selects
+                input.addEventListener('change', filterProperties);
             }
         });
 
-
+        // Evento no botão 'Buscar' (redundante, mas mantém a UX)
         searchButton.addEventListener('click', filterProperties);
+        
+        // Evento no botão 'Limpar Todos'
         resetButton.addEventListener('click', resetFilters);
 
-        // Dispara o filtro ao teclar Enter
+        // Dispara o filtro ao teclar Enter nos campos de texto/número
         keywordInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -401,17 +438,22 @@
 
         // Menu Mobile
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            const isExpanded = mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
         });
 
         // Carregamento Inicial: Dispara a listagem
         document.addEventListener('DOMContentLoaded', () => {
+            // Garante que o estado inicial dos filtros avançados é fechado
             advancedFiltersContent.style.maxHeight = null;
+            advancedFiltersContent.classList.remove('is-open');
+
+            // Dispara a primeira filtragem (mostra todos os imóveis)
             filterProperties();
         });
     </script>
 </body>
-
 </html>
+
 
 
