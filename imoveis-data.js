@@ -43,10 +43,10 @@ const imoveis = [
         // 7. MÍDIA (URLs Confiáveis)
         // **ATENÇÃO: Links do Google Drive não são recomendados para sites de produção**
         // Troque por URLs de um servidor ou CDN (ex: Cloudinary, S3, ou servidor próprio)
-        urlSlug: 'lote-360m-plano-bairro-exemplo', // URL amigável para a página do imóvel
+        urlSlug: 'lote-360m', // URL amigável para a página do imóvel
         galeria: [
-            'https://suaempresa.com.br/images/lote-360m-foto1.jpg',
-            'https://suaempresa.com.br/images/lote-360m-croqui.jpg',
+            'https://drive.google.com/file/d/14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8/view?usp=sharing'
         ]
     }
 ];
+
