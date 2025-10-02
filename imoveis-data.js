@@ -11,7 +11,7 @@ const imoveis = [
         fullDescription: 'Uma oportunidade imperdível para quem busca espaço e as dimensões ideais para construir. Este lote possui 360 metros quadrados, oferecendo uma tela em branco para você dar vida ao seu projeto residencial ou de investimento.',
         price: 470000,
         areaTotal: 360, 
-        image: https://drive.google.com/file/d/14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8/view?usp=sharing, 
+        image: 'https://drive.google.com/file/d/14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8/view?usp=sharing', 
         // 🚨 CRÍTICO: Devem ser definidos como NÚMEROS (zero)
         quartos: 0,        
         banheiros: 0,      
@@ -22,4 +22,5 @@ const imoveis = [
 ];
 
 window.imoveis = imoveis;
+
 
