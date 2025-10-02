@@ -3,22 +3,23 @@
 const imoveis = [
     {
         id: 1, 
-        codigoImovel: 'LOTE-1', 
+        codigoImovel: '1', 
         title: 'Lote - 360m²', 
         // 🚨 CRÍTICO: O filtro do seu HTML espera o valor 'terreno'.
         type: 'terreno', 
         description: '360m² para construir AGORA. Potencial máximo, investimento CERTO.',
-        fullDescription: 'Descrição completa do lote...',
+        fullDescription: 'Uma oportunidade imperdível para quem busca espaço e as dimensões ideais para construir. Este lote possui 360 metros quadrados, oferecendo uma tela em branco para você dar vida ao seu projeto residencial ou de investimento.',
         price: 470000,
         areaTotal: 360, 
-        image: 'url_da_imagem_principal_do_lote', 
+        image: https://drive.google.com/file/d/14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8/view?usp=sharing, 
         // 🚨 CRÍTICO: Devem ser definidos como NÚMEROS (zero)
         quartos: 0,        
         banheiros: 0,      
         vagas: 0,          
-        galeria: []
+        galeria: [https://drive.google.com/file/d/14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8/view?usp=sharing]
     },
     // ... outros imóveis ...
 ];
 
 window.imoveis = imoveis;
+
