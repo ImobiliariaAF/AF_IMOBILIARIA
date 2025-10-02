@@ -50,7 +50,7 @@
             background-image: url('https://images.unsplash.com/photo-1518780749007-88942b083c26?q=80&w=2670&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            /* background-attachment: fixed; REMOVIDO PARA MELHOR PERFORMANCE EM MOBILE */
         }
     </style>
 </head>
@@ -58,7 +58,7 @@
 
     <nav class="bg-gradient-to-br from-stone-950/95 to-stone-900/95 backdrop-blur-sm shadow-xl fixed w-full z-20 top-0 transition-colors duration-300" id="main-nav">
         <div class="container mx-auto px-5 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-black text-amber-500 tracking-wider transition-colors duration-300">
+            <a href="#inicio" class="text-2xl font-black text-amber-500 tracking-wider transition-colors duration-300">
                 AF Imobiliária
             </a>
             <div class="hidden md:flex space-x-6" role="navigation" aria-label="Navegação Principal">
@@ -97,12 +97,12 @@
                 <div class="bg-stone-900 bg-opacity-80 backdrop-blur-sm p-4 rounded-xl shadow-2xl border border-amber-700/50">
                     <h3 class="text-lg font-bold mb-3 text-amber-300">Busca Rápida por Código</h3>
                     <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
-                        <input type="number" id="busca-codigo" placeholder="Digite o código (ex: 1, 2, 3)" aria-label="Código do Imóvel" class="w-full p-3 rounded-lg text-gray-800 bg-stone-100 border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-400 font-semibold placeholder:font-light" required>
+                        <input type="number" id="busca-codigo" placeholder="Digite o código (ex: 1, 2 ou 3)" aria-label="Código do Imóvel" class="w-full p-3 rounded-lg text-gray-800 bg-stone-100 border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-400 font-semibold placeholder:font-light" required>
                         <button id="btn-buscar-codigo" class="bg-amber-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-500 transition-colors duration-300 flex-shrink-0 text-sm transform hover:scale-[1.02]">
                             BUSCAR
                         </button>
                     </div>
-                    <p id="feedback-busca" class="mt-3 text-sm text-red-400 font-medium hidden" role="alert">
+                    <p id="feedback-busca" class="mt-3 text-sm text-red-300 font-medium hidden" role="alert">
                         Código inválido. Por favor, tente novamente.
                     </p>
                 </div>
@@ -117,7 +117,7 @@
 
     <section id="sobre" class="py-16 md:py-24 bg-stone-900">
         <div class="container mx-auto px-5 text-center fade-in">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-100 border-b-2 border-amber-500 inline-block pb-1">Quem Somos Nós</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-100 border-b-2 border-amber-500 inline-block pb-1 mb-4">Quem Somos Nós</h2>
             <p class="mt-6 text-gray-300 max-w-2xl mx-auto text-base leading-relaxed">
                 Acreditamos que um lar é muito mais do que um imóvel. É onde memórias são criadas e sonhos são realizados. 
                 Foi essa paixão por ajudar pessoas a encontrar seu espaço no mundo que nos trouxe ao mercado imobiliário em 2023. 
@@ -216,9 +216,9 @@
                 Preencha o formulário abaixo e entraremos em contato o mais breve possível via WhatsApp para discutir seu projeto.
             </p>
             <form id="formulario-contato" class="mt-8 max-w-lg mx-auto space-y-4 card-animation" style="transition-delay: 0.2s;">
-                <input type="text" placeholder="Seu Nome Completo" id="nome-completo" aria-label="Seu Nome Completo" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white" required>
-                <input type="email" placeholder="Seu E-mail" id="email" aria-label="Seu E-mail" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white" required>
-                <input type="tel" placeholder="Seu Telefone (ex: 11 98765-4321)" id="telefone" aria-label="Seu Telefone" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white">
+                <input type="text" placeholder="Seu Nome Completo" id="nome-completo" aria-label="Seu Nome Completo" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white" required autocomplete="name">
+                <input type="email" placeholder="Seu E-mail" id="email" aria-label="Seu E-mail" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white" required autocomplete="email" inputmode="email">
+                <input type="tel" placeholder="Seu Telefone (ex: 31 98765-4321)" id="telefone" aria-label="Seu Telefone" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white" required pattern="[0-9]{2} [0-9]{4,5}-[0-9]{4}" autocomplete="tel" inputmode="tel">
                 <select id="interesse" aria-label="Motivo do Contato" class="w-full p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 border border-transparent focus:border-white" required>
                     <option value="">Selecione o motivo do contato...</option>
                     <option value="Comprar um imóvel">Comprar um imóvel</option>
@@ -244,7 +244,7 @@
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
                 </a>
                 <a href="#" class="text-gray-400 hover:text-amber-500 transition-colors duration-300" aria-label="Instagram">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.721.01 3.682.043 2.509.088 3.821.942 4.949 2.07.955.955 1.71 2.267 1.798 4.949.033.961.043 1.252.043 3.682s-.01 2.721-.043 3.682c-.088 2.509-.942 3.821-2.07 4.949-.955.955-2.267 1.71-4.949 1.798-.961.033-1.252.043-3.682.043s-2.721-.01-3.682-.043c-2.509-.088-3.821-.942-4.949-2.07-.955-.955-1.71-2.267-1.798-4.949-.033-.961-.043-1.252-.043-3.682s.01-2.721.043-3.682c.088-2.509.942-3.821 2.07-4.949.955-.955 2.267-1.71 4.949-1.798.961-.033 1.252-.043 3.682-.043zm0-2c-2.676 0-3.047.01-4.124.06-1.07.04-1.79.231-2.424.479-.64.24-1.229.58-1.785 1.135-.556.556-.895 1.145-1.135 1.786-.248.634-.439 1.354-.479 2.424-.05 1.076-.06 1.446-.06 4.123v.081c0 2.678.01 3.048.06 4.124.04 1.07.231 1.79.479 2.424.24 .64.58 1.229 1.135 1.785.556.556 1.145.895 1.786 1.135.634.248 1.354.439 2.424.479 1.076.05 1.446.06 4.123.06h.081c2.678 0 3.048-.01 4.124-.06 1.07-.04 1.79-.231 2.424-.479.24-.64.58-1.229 1.135-1.785.556-.556 1.145-.895 1.786-1.135.634-.248 1.354-.439-.479 2.424-1.076-.05-1.446-.06-4.123-.06zm0 1.62c2.146 0 2.427.008 3.29.046 2.052.083 2.872.934 3.323 1.385.45.45.922 1.27.996 3.323.038.863.046 1.144.046 3.29s-.008 2.427-.046 3.29c-.074 2.052-.925 2.872-1.385 3.323-.45.45-1.27.922-3.323.996-.863.038-1.144-.046-3.29.046s-2.427-.008-3.29-.046c-.074-2.052-.925-2.872-1.385-3.323-.45-.45-.922-1.27-.996-3.323-.038-.863-.046-1.144-.046-3.29s.008-2.427.046-3.29c.074-2.052.925-2.872 1.385-3.323.45-.45 1.27-.922 3.323-.996.863-.038 1.144-.046 3.29-.046zm0 1.837a4.03 4.03 0 1 0 0 8.06 4.03 4.03 0 0 0 0-8.06zm0 2.407a1.623 1.623 0 1 1 0 3.246 1.623 1.623 0 0 1 0-3.246zm5.344-5.344a1.264 1.264 0 1 0 0 2.529 1.264 1.264 0 0 0 0-2.529z" clip-rule="evenodd" /></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.721.01 3.682.043 2.509.088 3.821.942 4.949 2.07.955.955 1.71 2.267 1.798 4.949.033.961.043 1.252.043 3.682s-.01 2.721-.043 3.682c-.088 2.509-.942 3.821-2.07 4.949-.955.955-2.267 1.71-4.949 1.798-.961.033-1.252.043-3.682.043s-2.721-.01-3.682-.043c-2.509-.088-3.821-.942-4.949-2.07-.955-.955-1.71-2.267-1.798-4.949-.033-.961-.043-1.252-.043-3.682s.01-2.721.043-3.682c.088-2.509.942-3.821 2.07-4.949.955-.955 2.267-1.71 4.949-1.798.961-.033 1.252-.043 3.682-.043zm0-2c-2.676 0-3.047.01-4.124.06-1.07.04-1.79.231-2.424.479-.64.24-1.229.58-1.785 1.135-.556.556-.895 1.145-1.135 1.786-.248.634-.439 1.354-.479 2.424-.05 1.076-.06 1.446-.06 4.123v.081c0 2.678.01 3.048.06 4.124.04 1.07.231 1.79.479 2.424.24 .64.58 1.229 1.135 1.785.556.556 1.145.895 1.786 1.135.634.248 1.354.439 2.424.479 1.076.05 1.446.06 4.123.06h.081c2.678 0 3.048-.01 4.124-.06 1.07-.04 1.79-.231 2.424-.479.24-.64.58-1.229 1.135-1.785.556-.556 1.145-.895 1.786-1.135.634-.248 1.354.439-.479 2.424-1.076-.05-1.446-.06-4.123-.06zm0 1.62c2.146 0 2.427.008 3.29.046 2.052.083 2.872.934 3.323 1.385.45.45.922 1.27.996 3.323.038.863.046 1.144.046 3.29s-.008 2.427-.046 3.29c-.074 2.052-.925 2.872-1.385 3.323-.45.45-1.27.922-3.323.996-.863.038-1.144-.046-3.29.046s-2.427-.008-3.29-.046c-.074-2.052-.925-2.872-1.385-3.323-.45-.45-.922-1.27-.996-3.323-.038-.863-.046-1.144-.046-3.29s.008-2.427.046-3.29c.074-2.052.925-2.872 1.385-3.323.45-.45 1.27-.922 3.323-.996.863-.038 1.144-.046 3.29-.046zm0 1.837a4.03 4.03 0 1 0 0 8.06 4.03 4.03 0 0 0 0-8.06zm0 2.407a1.623 1.623 0 1 1 0 3.246 1.623 1.623 0 0 1 0-3.246zm5.344-5.344a1.264 1.264 0 1 0 0 2.529 1.264 1.264 0 0 0 0-2.529z" clip-rule="evenodd" /></svg>
                 </a>
                 <a href="#" class="text-gray-400 hover:text-amber-500 transition-colors duration-300" aria-label="LinkedIn">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3.832a.5.5 0 0 0-.474.324l-.988 2.766a.5.5 0 0 1-.474.324H10.158a.5.5 0 0 1-.474-.324l-.988-2.766A.5.5 0 0 0 8.291 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16Z"/><path d="M12 11a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg>
@@ -265,7 +265,9 @@
             const btnBuscarCodigo = document.getElementById('btn-buscar-codigo');
             const feedbackBusca = document.getElementById('feedback-busca');
             const form = document.getElementById('formulario-contato');
-            const mainNav = document.getElementById('main-nav');
+
+            // Simulação de IDs válidos para a busca rápida
+            const VALID_CODES = ['1', '2', '3']; // IDs dos imóveis em destaque
 
 
             // ============== 1. Funções de UI/UX =================
@@ -285,7 +287,15 @@
                         }
 
                         if (targetElement) {
-                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                            // Calcula o offset para a navegação fixa
+                            const navHeight = document.getElementById('main-nav').offsetHeight;
+                            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                            const offsetPosition = elementPosition - navHeight;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
                         }
                     });
                 });
@@ -299,7 +309,7 @@
             };
             mobileMenuButton.addEventListener('click', toggleMobileMenu);
 
-            // Animação de Scroll
+            // Animação de Scroll (Intersection Observer)
             const initScrollAnimation = () => {
                 const appearOptions = { threshold: 0.2 };
                 const appearOnScroll = new IntersectionObserver((entries, observer) => {
@@ -321,17 +331,20 @@
             const handleSearchByCode = () => {
                 const codigo = buscaCodigoInput.value.trim();
                 
-                // Validação simples: se é um número positivo (IDs começam em 1)
-                if (codigo && !isNaN(parseInt(codigo)) && parseInt(codigo) > 0) {
+                // Validação: verifica se o código está na lista de destaque (simulação)
+                if (VALID_CODES.includes(codigo)) {
                     feedbackBusca.classList.add('hidden');
-                    // Simula uma pequena demora para dar tempo de ver a transição
                     btnBuscarCodigo.innerHTML = 'Carregando...';
+
+                    // Simula a navegação para a página de detalhes
                     setTimeout(() => {
                         window.location.href = `detalhes.html?id=${codigo}`;
-                    }, 500); // Meio segundo de delay
+                    }, 500); 
+
                 } else {
-                    feedbackBusca.textContent = 'Por favor, digite um código de imóvel válido (número positivo).';
+                    feedbackBusca.textContent = `Código "${codigo}" não encontrado. Tente os códigos: 1, 2 ou 3.`;
                     feedbackBusca.classList.remove('hidden');
+                    buscaCodigoInput.focus();
                 }
             };
             
@@ -350,28 +363,24 @@
             const handleFormSubmit = (e) => {
                 e.preventDefault();
 
+                // O browser já cuida da validação required/pattern. Apenas coletamos os valores.
                 const nome = document.getElementById('nome-completo').value.trim();
                 const email = document.getElementById('email').value.trim();
                 const telefone = document.getElementById('telefone').value.trim();
                 const interesse = document.getElementById('interesse').value;
                 const mensagem = document.getElementById('mensagem').value.trim();
-
-                // Validação do interesse (campo obrigatório com a melhoria)
-                if (!interesse) {
-                    alert('Por favor, selecione o motivo do seu contato.');
-                    return;
-                }
                 
-                // Montagem da mensagem
+                // Montagem da mensagem usando Template Literals e checagens ternárias
                 let textoWhatsApp = `*SOLICITAÇÃO DE CONTATO - AF IMOBILIÁRIA*\n\n`;
                 textoWhatsApp += `👤 *Nome:* ${nome}\n`;
-                if (telefone) textoWhatsApp += `📞 *Telefone:* ${telefone}\n`;
-                textoWhatsApp += `📧 *E-mail:* ${email}\n`;
-                textoWhatsApp += `🎯 *Interesse:* ${interesse}\n`;
-                if (mensagem !== '') {
-                    textoWhatsApp += `💬 *Mensagem/Detalhes:*\n${mensagem}`;
+                textoWhatsApp += `📞 *Telefone:* ${telefone}\n`; // Campo obrigatório
+                textoWhatsApp += `📧 *E-mail:* ${email}\n`; // Campo obrigatório
+                textoWhatsApp += `🎯 *Interesse:* ${interesse}\n`; // Campo obrigatório
+                
+                if (mensagem) {
+                    textoWhatsApp += `\n💬 *Mensagem/Detalhes:*\n${mensagem}`;
                 } else {
-                    textoWhatsApp += `💬 *Mensagem/Detalhes:*\nSem detalhes adicionais.`;
+                    textoWhatsApp += `\n💬 *Mensagem/Detalhes:*\nNenhuma mensagem adicional.`;
                 }
 
                 const mensagemCodificada = encodeURIComponent(textoWhatsApp);
@@ -393,6 +402,7 @@
     </script>
 </body>
 </html>
+
 
 
 
