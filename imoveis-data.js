@@ -7,11 +7,11 @@ const imoveis = [
     {
         id: 1, 
         codigoImovel: '1', 
-        title: 'Lote Exclusivo - Condomínio GreenField', 
+        title: 'Lote Exclusivo - 360m²', 
         type: 'terreno', 
-        address: 'Rua das Palmeiras, 100 - GreenField',
+        address: -,
         description: '360m² para construir AGORA. Potencial máximo, investimento CERTO.',
-        fullDescription: 'Uma oportunidade imperdível para quem busca espaço e as dimensões ideais para construir. Este lote possui 360 metros quadrados, em uma área plana, pronto para você dar vida ao seu projeto residencial ou de investimento. Próximo à área de lazer.',
+        fullDescription: 'Uma oportunidade imperdível para quem busca espaço e as dimensões ideais para construir. Este lote possui 360 metros quadrados, em uma área plana, pronto para você dar vida ao seu projeto residencial ou de investimento.',
         price: 470000,
         areaTotal: 360, 
         quartos: 0, 
@@ -24,6 +24,7 @@ const imoveis = [
 
 // Define a variável global que é usada pelo script em imoveis.html
 window.imoveis = imoveis;
+
 
 
 
