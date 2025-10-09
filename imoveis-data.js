@@ -17,13 +17,14 @@ const imoveis = [
         quartos: 0, 
         banheiros: 0, 
         vagas: 0, 
-        image: 'https://drive.google.com/file/d/14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8/view',
-        galeria: ['https://drive.google.com/file/d/14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8/view']
+        image: 'https://drive.google.com/uc?id=14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8',
+        galeria: ['https://drive.google.com/uc?id=14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8']
     },
 ];
 
 // Define a variável global que é usada pelo script em imoveis.html
 window.imoveis = imoveis;
+
 
 
 
