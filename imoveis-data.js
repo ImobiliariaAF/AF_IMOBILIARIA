@@ -23,7 +23,7 @@ const imoveis = [
     },
     {
         id: 2,
-        codigoImovel: 'Casa no Bairro Industrial',
+        codigoImovel: 'CASA-002',
         title: 'Casa no Bairro Industrial',
         type: 'casa',
         address: 'Bairro Industrial',
@@ -42,6 +42,7 @@ const imoveis = [
 
 // Define a variável global que é usada pelo script em imoveis.html
 window.imoveis = imoveis;
+
 
 
 
