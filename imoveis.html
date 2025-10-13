@@ -31,7 +31,6 @@
         }
         /* Estilo para mostrar/esconder filtros avançados */
         .advanced-filters-content {
-            /* max-height: 0; REMOVIDO: Controlado apenas pelo JS */
             transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
             overflow: hidden;
             opacity: 0; /* Inicia escondido */
@@ -232,7 +231,7 @@
                     let featuresHtml = '';
 
                     if (!isTerreno) {
-                        // Ícone de Quarto Corrigido (Lucide Icon: Bed)
+                        // Conteúdo para Casas/Apartamentos
                         featuresHtml = `
                             <div class="flex justify-between text-gray-400 text-xs mt-3 border-t border-stone-700 pt-2">
                                 <div title="${property.quartos || 0} Quartos" class="flex items-center">
@@ -341,15 +340,20 @@
                 const matchesType = type === 'all' || normalizedType === type;
                 
                 // 4. FILTROS NUMÉRICOS (Trata nulos como 0 para comparação)
-                // Garante que os campos são tratados como números (a correção no imoveis-data.js é crucial aqui)
                 const propertyRooms = property.quartos || 0;
                 const propertyBathrooms = property.banheiros || 0;
                 const propertyVagas = property.vagas || 0;
                 const propertyPrice = property.price || 0;
 
-                const matchesRooms = propertyRooms >= rooms;
-                const matchesBathrooms = propertyBathrooms >= bathrooms;
-                const matchesVagas = propertyVagas >= vagas;
+                // MELHORIA CRÍTICA: Se o imóvel for um Terreno (Lote), ignore os filtros de Quartos/Banheiros/Vagas,
+                // pois ele tem 0 e seria excluído se o filtro estivesse em 1+.
+                // Se for uma Casa/Apartamento, aplique o filtro.
+                const isTerreno = normalizedType === 'terreno';
+
+                const matchesRooms = isTerreno ? true : (propertyRooms >= rooms);
+                const matchesBathrooms = isTerreno ? true : (propertyBathrooms >= bathrooms);
+                const matchesVagas = isTerreno ? true : (propertyVagas >= vagas);
+
                 const matchesPrice = propertyPrice >= minPrice && propertyPrice <= maxPrice;
 
                 return matchesKeyword && matchesCode && matchesType && matchesRooms && matchesBathrooms && matchesVagas && matchesPrice;
@@ -369,8 +373,7 @@
             // Reinicia a filtragem
             filterProperties();
             
-            // Se os filtros avançados estiverem abertos, mantenha o estado (opcional)
-            // Ou feche-os para uma UX mais limpa:
+            // Fecha os filtros avançados
             if (advancedFiltersContent.classList.contains('is-open')) {
                  toggleAdvancedFiltersContent();
             }
@@ -455,6 +458,7 @@
     </script>
 </body>
 </html>
+
 
 
 
