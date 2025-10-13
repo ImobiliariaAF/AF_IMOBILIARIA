@@ -18,7 +18,7 @@ const imoveis = [
         banheiros: 0,
         vagas: 0,
         suites: 0,
-        // URL ajustada para funcionar corretamente em <img>
+        // IMAGEM CORRIGIDA para formato de visualização direta
         image: 'https://drive.google.com/uc?export=view&id=14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8',
         galeria: ['https://drive.google.com/uc?export=view&id=14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8']
     },
@@ -31,14 +31,15 @@ const imoveis = [
         description: 'Moderna e Imponente! Casa duplex com arquitetura aberta, muita luz e amplitude.',
         fullDescription: 'Casa de dois andares em meio lote, projetada para o seu conforto. Possui 2 quartos, incluindo 1 suíte, e 2 banheiros no total. Aproveite a varanda ampla para lazer e descanso. Localização estratégica e muito espaço!',
         price: 470000,
-        areaTotal: 180, // Number
-        quartos: 2,    // Number
-        suites: 1,     // Number
-        banheiros: 2,  // Number
-        vagas: 2,      // Number
-        // URL ajustada para funcionar corretamente em <img>
+        areaTotal: 180, 
+        quartos: 2,
+        suites: 1,
+        banheiros: 2,
+        vagas: 2,
+        // IMAGEM CORRIGIDA para formato de visualização direta
         image: 'https://drive.google.com/uc?export=view&id=1-nRG9cZvn369KZ0RRfkXnv1KyPbXStHS',
-        // Galeria também ajustada
+        
+        // GALERIA CORRIGIDA com todos os links no formato de visualização direta
         galeria: [
             'https://drive.google.com/uc?export=view&id=1-nRG9cZvn369KZ0RRfkXnv1KyPbXStHS',
             'https://drive.google.com/uc?export=view&id=1UUlDGjpLECi4IC-mNdKx-FMu_ammeAMw',
@@ -56,8 +57,6 @@ const imoveis = [
 
 // Define a variável global que é usada pelo script em imoveis.html
 window.imoveis = imoveis;
-
-
 
 
 
