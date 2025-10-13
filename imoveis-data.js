@@ -30,7 +30,7 @@ const imoveis = [
         address: 'Rua das Flores, Bairro Industrial',
         description: 'Moderna e Imponente! Casa duplex com arquitetura aberta, muita luz e amplitude.',
         fullDescription: 'Casa de dois andares em meio lote, projetada para o seu conforto. Possui 2 quartos, incluindo 1 suíte, e 2 banheiros no total. Aproveite a varanda ampla para lazer e descanso. Localização estratégica e muito espaço!',
-        price: 470000,
+        price: 0,
         areaTotal: 180, 
         quartos: 2,
         suites: 1,
@@ -57,6 +57,7 @@ const imoveis = [
 
 // Define a variável global que é usada pelo script em imoveis.html
 window.imoveis = imoveis;
+
 
 
 
