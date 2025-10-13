@@ -341,6 +341,7 @@
                 const matchesType = type === 'all' || normalizedType === type;
                 
                 // 4. FILTROS NUMÉRICOS (Trata nulos como 0 para comparação)
+                // Garante que os campos são tratados como números (a correção no imoveis-data.js é crucial aqui)
                 const propertyRooms = property.quartos || 0;
                 const propertyBathrooms = property.banheiros || 0;
                 const propertyVagas = property.vagas || 0;
