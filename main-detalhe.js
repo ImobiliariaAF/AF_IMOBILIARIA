@@ -31,19 +31,6 @@ function showToast(message) {
     }, 3000);
 }
 
-// --- FUNÇÃO PARA TROCAR A IMAGEM PRINCIPAL ---
-// ❌ REMOVIDA A EXPORTAÇÃO GLOBAL E A CHAMADA DESTA FUNÇÃO PELA GALERIA
-// (Mantida aqui apenas se o código principal a chamar em outro lugar, mas inativa para a galeria)
-function changeMainImage(imageUrl) {
-    // Esta função NÃO É MAIS USADA PELO CLIQUE NAS MINIATURAS DA GALERIA.
-    // O clique agora chama openModal() diretamente.
-    const mainImgElement = document.getElementById('main-image-element');
-    if (mainImgElement) {
-        mainImgElement.src = imageUrl;
-        mainImgElement.onclick = () => openModal(imageUrl);
-    }
-}
-// window.changeMainImage = changeMainImage; // NÃO TORNAMOS MAIS ACESSÍVEL GLOBALMENTE SE NÃO FOR USAR
 
 // --- LÓGICA DO LIGHTBOX (Modal de Imagem) ---
 const modal = document.getElementById('image-modal');
@@ -72,7 +59,6 @@ function closeModal() {
 if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
 if (modal) {
     modal.addEventListener('click', (e) => {
-        // Se clicar no fundo escuro (o próprio modal div), fecha
         if (e.target.id === 'image-modal') {
             closeModal();
         }
@@ -118,11 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('imovel-preco').textContent = `R$ ${imovel.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             document.getElementById('imovel-descricao').innerHTML = String(imovel.fullDescription || imovel.description).replace(/\n/g, '<br>');
 
-            // 2. LÓGICA DE VISIBILIDADE DE CARACTERÍSTICAS (mantida igual, está correta)
+            // 2. LÓGICA DE VISIBILIDADE DE CARACTERÍSTICAS
             
-            const quartosLi = document.getElementById('imovel-quartos').closest('li');
-            const banheirosLi = document.getElementById('imovel-banheiros').closest('li');
-            const vagasLi = document.getElementById('imovel-vagas').closest('li');
+            const quartosLi = document.getElementById('li-quartos');
+            const banheirosLi = document.getElementById('li-banheiros');
+            const vagasLi = document.getElementById('li-vagas');
             const areaLi = document.getElementById('li-area-total'); 
 
             document.getElementById('imovel-quartos').textContent = imovel.quartos || 0;
@@ -144,10 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 3. CARREGA IMAGENS 
             
-            const imagemPrincipalContainer = document.getElementById('imovel-imagem-principal');
+            // 🔑 USANDO O ID CORRETO DA DIV CONTAINER AGORA
+            const imagemPrincipalContainer = document.getElementById('imovel-imagem-principal-container');
             
-            // 💡 Imagem Principal: Fica FIXA e abre o Modal dela mesma.
-            imagemPrincipalContainer.innerHTML = `<img id="main-image-element" src="${imovel.image}" alt="${imovel.title}" class="w-full h-full object-cover rounded-lg cursor-pointer" onclick="openModal('${imovel.image}')">`;
+            // Imagem Principal: Fica FIXA e abre o Modal dela mesma.
+            if (imagemPrincipalContainer) {
+                imagemPrincipalContainer.innerHTML = `<img id="main-image-element" src="${imovel.image}" alt="${imovel.title}" class="w-full h-full object-cover rounded-lg cursor-pointer" onclick="openModal('${imovel.image}')">`;
+            }
 
             // Carrega Galeria (Miniaturas)
             const galeriaContainer = document.getElementById('imovel-galeria');
@@ -159,18 +148,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 allImages.unshift(imovel.image);
             }
             
-            // 🔑 LÓGICA CORRIGIDA: Miniatura chama openModal() diretamente
+            // LÓGICA DE CLIQUE: Miniatura abre o Modal/Lightbox.
             allImages.forEach(imagemUrl => {
                 const imgHtml = `
                     <img src="${imagemUrl}" 
                          alt="Imagem da Galeria" 
                          class="w-full h-24 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity" 
                          onclick="openModal('${imagemUrl}')"> 
-                `; // 👈 AGORA ABRE O MODAL DIRETAMENTE
+                `;
                 galeriaContainer.innerHTML += imgHtml;
             });
             
-            // 4. PREPARA O FORMULÁRIO (mantido igual, está correta)
+            // 4. PREPARA O FORMULÁRIO
             
             const telefoneInput = document.getElementById('telefone');
             if (telefoneInput) {
@@ -208,10 +197,10 @@ function copiarCodigo() {
         showToast('Falha ao copiar. Tente manualmente.');
     });
 }
-window.copiarCodigo = copiarCodigo; // Torna a função acessível no HTML
+window.copiarCodigo = copiarCodigo; 
 
 
-// --- LÓGICA DO FORMULÁRIO RETRÁTIL (mantida igual, está correta) ---
+// --- LÓGICA DO FORMULÁRIO RETRÁTIL ---
 const formularioHeader = document.getElementById('formulario-header');
 const formularioContent = document.getElementById('formulario-content');
 const arrowIcon = document.getElementById('arrow-icon');
