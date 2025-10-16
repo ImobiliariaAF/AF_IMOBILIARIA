@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AF Imobiliária - Encontre Seu Imóvel Ideal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="imoveis-data.js"></script> 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700;800;900&display=swap');
 
@@ -165,43 +166,7 @@
                 Uma seleção de propriedades exclusivas disponíveis para você.
             </p>
             <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="featured-imoveis">
-                <div class="bg-stone-800 rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-700/50 card-animation">
-                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b169?q=80&w=2574&auto=format&fit=crop" alt="Casa de Luxo" class="w-full h-48 object-cover object-center">
-                    <div class="p-5 text-left">
-                        <span class="inline-block bg-amber-600/20 text-amber-300 text-xs font-bold px-2 py-0.5 rounded-full mb-2">CASA</span>
-                        <h3 class="text-lg font-bold text-gray-100">Casa de Luxo com Piscina</h3>
-                        <p class="mt-1 text-gray-400 text-sm">4 quartos, 3 banheiros, 2 vagas. Excelente localização.</p>
-                        <p class="mt-3 text-amber-500 font-extrabold text-xl">R$ 1.500.000</p>
-                        <a href="detalhes.html?id=2" class="mt-4 block text-center bg-amber-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-amber-500 transition-colors duration-300 text-sm transform hover:scale-[1.01]" aria-label="Ver detalhes do imóvel código 2">
-                            Detalhes <span aria-hidden="true">&rarr;</span>
-                        </a>
-                    </div>
                 </div>
-                <div class="bg-stone-800 rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-700/50 card-animation" style="transition-delay: 0.2s;">
-                    <img src="https://images.unsplash.com/photo-1570129477492-45e003058866?q=80&w=2670&auto=format&fit=crop" alt="Apartamento Moderno" class="w-full h-48 object-cover object-center">
-                    <div class="p-5 text-left">
-                        <span class="inline-block bg-amber-600/20 text-amber-300 text-xs font-bold px-2 py-0.5 rounded-full mb-2">APARTAMENTO</span>
-                        <h3 class="text-lg font-bold text-gray-100">Apartamento Moderno no Centro</h3>
-                        <p class="mt-1 text-gray-400 text-sm">2 quartos, 1 suíte, varanda gourmet. Lazer completo.</p>
-                        <p class="mt-3 text-amber-500 font-extrabold text-xl">R$ 850.000</p>
-                        <a href="detalhes.html?id=1" class="mt-4 block text-center bg-amber-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-amber-500 transition-colors duration-300 text-sm transform hover:scale-[1.01]" aria-label="Ver detalhes do imóvel código 1">
-                            Detalhes <span aria-hidden="true">&rarr;</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-stone-800 rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-700/50 card-animation" style="transition-delay: 0.4s;">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2670&auto=format&fit=crop" alt="Terreno para Construção" class="w-full h-48 object-cover object-center">
-                    <div class="p-5 text-left">
-                        <span class="inline-block bg-amber-600/20 text-amber-300 text-xs font-bold px-2 py-0.5 rounded-full mb-2">TERRENO</span>
-                        <h3 class="text-lg font-bold text-gray-100">Terreno em Condomínio Fechado</h3>
-                        <p class="mt-1 text-gray-400 text-sm">800 m². Perfeito para construir a casa dos seus sonhos com segurança e lazer.</p>
-                        <p class="mt-3 text-amber-500 font-extrabold text-xl">R$ 350.000</p>
-                        <a href="detalhes.html?id=3" class="mt-4 block text-center bg-amber-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-amber-500 transition-colors duration-300 text-sm transform hover:scale-[1.01]" aria-label="Ver detalhes do imóvel código 3">
-                            Detalhes <span aria-hidden="true">&rarr;</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
             <a href="imoveis.html" class="mt-12 inline-block bg-amber-600 text-white font-semibold py-3 px-10 rounded-full shadow-xl shadow-amber-800/40 hover:bg-amber-500 transition-all duration-300 text-base transform hover:scale-105 fade-in">
                 Ver todos os imóveis
@@ -254,6 +219,8 @@
     </footer>
 
     <script>
+        // O array 'imoveis' é carregado do arquivo imoveis-data.js
+
         document.addEventListener('DOMContentLoaded', () => {
             
             // ============== Variáveis do DOM =================
@@ -266,8 +233,8 @@
             const feedbackBusca = document.getElementById('feedback-busca');
             const form = document.getElementById('formulario-contato');
 
-            // Simulação de IDs válidos para a busca rápida
-            const VALID_CODES = ['1', '2', '3']; // IDs dos imóveis em destaque
+            // Os códigos válidos agora são gerados dinamicamente dos imóveis em destaque
+            let VALID_CODES = []; 
 
 
             // ============== 1. Funções de UI/UX =================
@@ -324,25 +291,95 @@
                 faders.forEach(fader => {
                     appearOnScroll.observe(fader);
                 });
+
+                // Se houver novos cards de destaque, eles precisam ser observados também.
+                document.querySelectorAll('.card-animation').forEach(el => {
+                    appearOnScroll.observe(el);
+                });
             };
 
-            // ============== 2. Lógica de Busca por Código =================
+
+            // ============== 2. Lógica de Renderização de Destaques =================
+            
+            const renderFeaturedImoveis = () => {
+                // 1. Filtra apenas os imóveis marcados com isFeatured: true
+                // Verifica se 'imoveis' existe e é um array.
+                if (typeof imoveis === 'undefined' || !Array.isArray(imoveis)) {
+                    console.error("Erro: Array 'imoveis' não encontrado ou não está definido.");
+                    return; 
+                }
+
+                const featuredImoveis = imoveis.filter(imovel => imovel.isFeatured === true);
+                const container = document.getElementById('featured-imoveis');
+                let delay = 0.0; // Para a animação sequencial
+                
+                // ❗ Atualiza os códigos válidos para a busca rápida
+                VALID_CODES = featuredImoveis.map(imovel => imovel.id.toString());
+
+                if (featuredImoveis.length === 0) {
+                    container.innerHTML = '<p class="text-gray-400 col-span-full">Nenhum imóvel em destaque no momento.</p>';
+                    return;
+                }
+
+                // 2. Mapeia os imóveis e cria o HTML para cada um
+                const htmlContent = featuredImoveis.map(imovel => {
+                    // Formata o preço para R$ 1.500.000
+                    const priceFormatted = new Intl.NumberFormat('pt-BR', { 
+                        style: 'currency', 
+                        currency: 'BRL', 
+                        minimumFractionDigits: 0 
+                    }).format(imovel.price);
+                    
+                    const cardHTML = `
+                        <div class="bg-stone-800 rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.02] hover:shadow-amber-700/50 card-animation" 
+                            style="transition-delay: ${delay}s;">
+                            
+                            <img src="${imovel.image}" alt="${imovel.title}" class="w-full h-48 object-cover object-center">
+                            
+                            <div class="p-5 text-left">
+                                <span class="inline-block bg-amber-600/20 text-amber-300 text-xs font-bold px-2 py-0.5 rounded-full mb-2">${imovel.type.toUpperCase()}</span>
+                                
+                                <h3 class="text-lg font-bold text-gray-100">${imovel.title}</h3>
+                                
+                                <p class="mt-1 text-gray-400 text-sm">${imovel.description}</p>
+                                
+                                <p class="mt-3 text-amber-500 font-extrabold text-xl">${priceFormatted}</p>
+                                
+                                <a href="detalhes.html?id=${imovel.id}" class="mt-4 block text-center bg-amber-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-amber-500 transition-colors duration-300 text-sm transform hover:scale-[1.01]" aria-label="Ver detalhes do imóvel código ${imovel.id}">
+                                    Detalhes <span aria-hidden="true">&rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    delay += 0.2; // Aumenta o delay para o próximo card (efeito cascata)
+                    return cardHTML;
+                }).join(''); // Junta todos os HTMLs dos cards
+
+                // 3. Insere no DOM
+                container.innerHTML = htmlContent;
+
+                // 4. Atualiza a mensagem de feedback da busca rápida
+                const validCodesText = VALID_CODES.join(', ');
+                buscaCodigoInput.placeholder = `Digite o código (ex: ${VALID_CODES[0] || '1'})`;
+                feedbackBusca.textContent = `Código não encontrado. Tente os códigos: ${validCodesText}.`;
+            };
+
+            // ============== 3. Lógica de Busca por Código =================
             
             const handleSearchByCode = () => {
                 const codigo = buscaCodigoInput.value.trim();
                 
-                // Validação: verifica se o código está na lista de destaque (simulação)
+                // Usando a lista VALID_CODES gerada dinamicamente
                 if (VALID_CODES.includes(codigo)) {
                     feedbackBusca.classList.add('hidden');
                     btnBuscarCodigo.innerHTML = 'Carregando...';
 
-                    // Simula a navegação para a página de detalhes
+                    // Navegação para a página de detalhes
                     setTimeout(() => {
                         window.location.href = `detalhes.html?id=${codigo}`;
                     }, 500); 
 
                 } else {
-                    feedbackBusca.textContent = `Código "${codigo}" não encontrado. Tente os códigos: 1, 2 ou 3.`;
                     feedbackBusca.classList.remove('hidden');
                     buscaCodigoInput.focus();
                 }
@@ -358,7 +395,7 @@
                 }
             });
 
-            // ============== 3. Lógica do Formulário (WhatsApp) =================
+            // ============== 4. Lógica do Formulário (WhatsApp) =================
             
             const handleFormSubmit = (e) => {
                 e.preventDefault();
@@ -373,9 +410,9 @@
                 // Montagem da mensagem usando Template Literals e checagens ternárias
                 let textoWhatsApp = `*SOLICITAÇÃO DE CONTATO - AF IMOBILIÁRIA*\n\n`;
                 textoWhatsApp += `👤 *Nome:* ${nome}\n`;
-                textoWhatsApp += `📞 *Telefone:* ${telefone}\n`; // Campo obrigatório
-                textoWhatsApp += `📧 *E-mail:* ${email}\n`; // Campo obrigatório
-                textoWhatsApp += `🎯 *Interesse:* ${interesse}\n`; // Campo obrigatório
+                textoWhatsApp += `📞 *Telefone:* ${telefone}\n`; 
+                textoWhatsApp += `📧 *E-mail:* ${email}\n`; 
+                textoWhatsApp += `🎯 *Interesse:* ${interesse}\n`; 
                 
                 if (mensagem) {
                     textoWhatsApp += `\n💬 *Mensagem/Detalhes:*\n${mensagem}`;
@@ -395,13 +432,15 @@
 
             form.addEventListener('submit', handleFormSubmit);
 
-            // ============== 4. Inicialização =================
+            // ============== 5. Inicialização =================
             initSmoothScroll();
+            renderFeaturedImoveis(); // ❗ CHAMADA CRUCIAL PARA POPULAR OS DESTAQUES
             initScrollAnimation();
         });
     </script>
 </body>
 </html>
+
 
 
 
