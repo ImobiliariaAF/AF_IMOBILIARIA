@@ -18,8 +18,11 @@ const imoveis = [
         banheiros: 0,
         vagas: 0,
         suites: 0,
+
+        // 🟢 ADICIONADO: Marcado como destaque para aparecer na página inicial
+        isFeatured: true, 
         
-        // CORREÇÃO: Substituído o link do Google Drive pelo caminho relativo no GitHub Pages
+        // Caminho Relativo (Assumindo que esta imagem está no seu repositório GitHub)
         image: 'Imagens/Lote - Rua Camilo/IMG-20251002-WA0038.jpg',
         galeria: ['Imagens/Lote - Rua Camilo/IMG-20251002-WA0038.jpg']
     },
@@ -28,7 +31,7 @@ const imoveis = [
         codigoImovel: 'CASA-002',
         title: 'Casa Duplex no Bairro Industrial',
         type: 'casa',
-        address: 'Rua das Flores, Bairro Industrial',
+        address: 'Bairro Industrial',
         description: 'Moderna e Imponente! Casa duplex com arquitetura aberta, muita luz e amplitude.',
         fullDescription: 'Casa de dois andares em meio lote, projetada para o seu conforto. Possui 2 quartos, incluindo 1 suíte, e 2 banheiros no total. Aproveite a varanda ampla para lazer e descanso. Localização estratégica e muito espaço!',
         price: 450000,
@@ -37,10 +40,14 @@ const imoveis = [
         suites: 1,
         banheiros: 2,
         vagas: 2,
-        // IMAGEM CORRIGIDA para formato de visualização direta
+
+        // 🟢 ADICIONADO: Marcado como destaque para aparecer na página inicial
+        isFeatured: true, 
+
+        // Mantido o link do Google Drive no formato de visualização direta
         image: 'https://drive.google.com/uc?export=view&id=1-nRG9cZvn369KZ0RRfkXnv1KyPbXStHS',
         
-        // GALERIA CORRIGIDA com todos os links no formato de visualização direta
+        // GALERIA mantida com os links do Google Drive
         galeria: [
             'https://drive.google.com/uc?export=view&id=1-nRG9cZvn369KZ0RRfkXnv1KyPbXStHS',
             'https://drive.google.com/uc?export=view&id=1UUlDGjpLECi4IC-mNdKx-FMu_ammeAMw',
@@ -54,10 +61,9 @@ const imoveis = [
             'https://drive.google.com/uc?export=view&id=1nCIc_a1AwkNVA5oiUvgeh0nJIzBqTnrX'
         ]
     },
+    // Adicione mais imóveis aqui, lembrando de usar isFeatured: true ou false
 ];
-
-// Define a variável global que é usada pelo script em imoveis.html
-window.imoveis = imoveis;
+// A remoção da linha 'window.imoveis = imoveis;' está feita, pois o script já a carrega.
 
 
 
