@@ -45,25 +45,28 @@ const imoveis = [
         isFeatured: true, 
 
         // Mantido o link do Google Drive no formato de visualização direta
-        image: 'https://drive.google.com/uc?export=view&id=1-nRG9cZvn369KZ0RRfkXnv1KyPbXStHS',
+        image: 'Imagens/Casa - bairro industrial/IMG-20251009-WA0006.jpg', // Usando a primeira imagem como principal
         
-        // GALERIA mantida com os links do Google Drive
         galeria: [
-            'https://drive.google.com/uc?export=view&id=1-nRG9cZvn369KZ0RRfkXnv1KyPbXStHS',
-            'https://drive.google.com/uc?export=view&id=1UUlDGjpLECi4IC-mNdKx-FMu_ammeAMw',
-            'https://drive.google.com/uc?export=view&id=13DeU4aN2-yD7E4icAmBiBx7nvZ-JNFYP',
-            'https://drive.google.com/uc?export=view&id=1rJtN_7yzSVOPKZkrEoP_nnMurm5I0bA1',
-            'https://drive.google.com/uc?export=view&id=1985o7uejb-gPS_0fxzoqmKTVx85pICGg',
-            'https://drive.google.com/uc?export=view&id=1DKy7ncjLLIxNvOBcQmfca1-I_Mh4Ri-b',
-            'https://drive.google.com/uc?export=view&id=1PKP802-cRLnM4JEBjb-UsQAj67ixdxH-',
-            'https://drive.google.com/uc?export=view&id=1WOgyhLGg3GnIwEySbtrBDWJgiLjzNFfR',
-            'https://drive.google.com/uc?export=view&id=1vrZeU6OeYOEALdMaf-0Cz4IlKlaOBw1l',
-            'https://drive.google.com/uc?export=view&id=1nCIc_a1AwkNVA5oiUvgeh0nJIzBqTnrX'
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0006.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0008.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0009.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0010.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0011.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0012.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0013.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0014.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0015.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0016.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0018.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0019.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0020.jpg'
         ]
     },
     // Adicione mais imóveis aqui, lembrando de usar isFeatured: true ou false
 ];
 // A remoção da linha 'window.imoveis = imoveis;' está feita, pois o script já a carrega.
+
 
 
 
