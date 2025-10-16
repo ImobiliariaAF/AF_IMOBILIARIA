@@ -18,9 +18,10 @@ const imoveis = [
         banheiros: 0,
         vagas: 0,
         suites: 0,
-        // IMAGEM CORRIGIDA para formato de visualização direta
-        image: 'https://drive.google.com/uc?export=view&id=14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8',
-        galeria: ['https://drive.google.com/uc?export=view&id=14cBK_MU3hqEfS-cBQGOasFkidXtPMWU8']
+        
+        // CORREÇÃO: Substituído o link do Google Drive pelo caminho relativo no GitHub Pages
+        image: 'Imagens/Lote - Rua Camilo/IMG-20251002-WA0038.jpg',
+        galeria: ['Imagens/Lote - Rua Camilo/IMG-20251002-WA0038.jpg']
     },
     {
         id: 2,
@@ -57,6 +58,7 @@ const imoveis = [
 
 // Define a variável global que é usada pelo script em imoveis.html
 window.imoveis = imoveis;
+
 
 
 
