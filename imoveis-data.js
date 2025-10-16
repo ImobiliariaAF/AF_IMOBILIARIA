@@ -18,11 +18,8 @@ const imoveis = [
         banheiros: 0,
         vagas: 0,
         suites: 0,
-
-        // 🟢 ADICIONADO: Marcado como destaque para aparecer na página inicial
         isFeatured: true, 
         
-        // Caminho Relativo (Assumindo que esta imagem está no seu repositório GitHub)
         image: 'Imagens/Lote - Rua Camilo/IMG-20251002-WA0038.jpg',
         galeria: ['Imagens/Lote - Rua Camilo/IMG-20251002-WA0038.jpg']
     },
@@ -31,7 +28,7 @@ const imoveis = [
         codigoImovel: 'CASA-002',
         title: 'Casa Duplex no Bairro Industrial',
         type: 'casa',
-        address: 'Bairro Industrial',
+        address: 'Rua das Flores, Bairro Industrial',
         description: 'Moderna e Imponente! Casa duplex com arquitetura aberta, muita luz e amplitude.',
         fullDescription: 'Casa de dois andares em meio lote, projetada para o seu conforto. Possui 2 quartos, incluindo 1 suíte, e 2 banheiros no total. Aproveite a varanda ampla para lazer e descanso. Localização estratégica e muito espaço!',
         price: 450000,
@@ -40,15 +37,13 @@ const imoveis = [
         suites: 1,
         banheiros: 2,
         vagas: 2,
-
-        // 🟢 ADICIONADO: Marcado como destaque para aparecer na página inicial
         isFeatured: true, 
 
-        // Mantido o link do Google Drive no formato de visualização direta
         image: 'Imagens/Casa - bairro industrial/IMG-20251009-WA0006.jpg', // Usando a primeira imagem como principal
         
         galeria: [
             'Imagens/Casa - bairro industrial/IMG-20251009-WA0006.jpg',
+            'Imagens/Casa - bairro industrial/IMG-20251009-WA0007.jpg',
             'Imagens/Casa - bairro industrial/IMG-20251009-WA0008.jpg',
             'Imagens/Casa - bairro industrial/IMG-20251009-WA0009.jpg',
             'Imagens/Casa - bairro industrial/IMG-20251009-WA0010.jpg',
@@ -65,7 +60,11 @@ const imoveis = [
     },
     // Adicione mais imóveis aqui, lembrando de usar isFeatured: true ou false
 ];
-// A remoção da linha 'window.imoveis = imoveis;' está feita, pois o script já a carrega.
+
+// 🚀 LINHA ESSENCIAL ADICIONADA NOVAMENTE:
+// Torna o array 'imoveis' acessível globalmente para os scripts em imoveis.html e detalhes.html
+window.imoveis = imoveis;
+
 
 
 
